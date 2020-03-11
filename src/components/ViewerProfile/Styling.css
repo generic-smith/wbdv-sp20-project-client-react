@@ -1,4 +1,7 @@
 .stretch-down {
-
     min-height: 350px;
+}
+
+.negative-margin {
+    margin-right: -15px;
 }

@@ -17,9 +17,11 @@ class ViewerProfileMainComponent extends React.Component {
 
 
                     </div>
-                    <div className="col-1"></div>
-                    <div className="col-3 border border-dark stretch-down">
+                    <div className="col-4 stretch-down">
 
+                        <div className="border border-dark negative-margin stretch-down">
+
+                        </div>
 
                     </div>
                 </div>
