@@ -1,27 +1,39 @@
 import React from "react";
+import SearchBar from "./SearchBar"
+import WatchingCard from "./WatchingCard"
+
+const init = {
+  media: [
+    {_id: "123", title: "Movie 1"},
+    {_id: "234", title: "Movie 2"},
+    {_id: "345", title: "Movie 3"}
+  ]
+};
 
 class WatchingGridComponent extends React.Component {
 
-    render() {
-        return (
-            <div className="row border border-dark">
-                <div className="col">
-                    <div className="text-left">
-                        Your Watch List
-                    </div>
-                </div>
-                <div className="col">
+  state = init;
 
-                    <div className="row float-right">
-                    <div className="mr-3"> Search </div>
-                    <input type="text"/>
-                    <button className="mr-3 ml-3"> + </button>
-                    </div>
+  render() {
+    return (
+        <div>
+          <div className="row border border-dark">
+            <SearchBar/>
+          </div>
+          <div className="watch-list">
+            {this.state.media.map(function (media, index) {
+                  return (
+                      <WatchingCard
+                          media={media}
+                      />
+                  )
+                }
+            )}
+          </div>
+        </div>
 
-                </div>
-            </div>
-
-        )
-    }
+    )
+  }
 }
+
 export default WatchingGridComponent
