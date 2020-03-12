@@ -16,9 +16,10 @@ class ViewerProfileMainComponent extends React.Component {
         return (
             <div className="container">
                 <LogoBar/>
-                <div className="row border border-dark">
+
+                {/*<div className="row border border-dark">
                     <QueryBar/>
-                </div>
+                </div>*/}
 
                 <div className="row mt-2">
                     <div className="col-8 border border-dark stretch-down">

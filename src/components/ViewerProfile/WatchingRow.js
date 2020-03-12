@@ -5,9 +5,8 @@ class WatchingRow extends React.Component {
   render() {
     return (
         <div className="row">
-          <div>
             {this.props.media.title}
-          </div>
+            <img src={`https://image.tmdb.org/t/p/w200${this.props.media.poster_path}`}/>
         </div>
     )
   }

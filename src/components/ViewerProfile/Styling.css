@@ -6,6 +6,9 @@
     margin-right: -15px;
 }
 
+.pos-a {
+    position: absolute;
+}
 
 .dropdown {
     position: relative;

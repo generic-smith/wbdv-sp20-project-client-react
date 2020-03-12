@@ -4,15 +4,15 @@ class SearchItem extends React.Component {
 
   render() {
     return (
-        <div className="row border border-dark">
-          <div className="col">Title</div>
-          <button className="col">+</button>
+        <div className={"row m-1 d-flex"}>
+          <div className="col-9">{this.props.media.title}</div>
+          <button onClick={() => this.props.addThisId(this.props.media.id)} className="col-3">+</button>
         </div>
     )
   }
 
 }
 
-
+export default SearchItem
 
 
