@@ -10,8 +10,7 @@ class WatchingListComponent extends React.Component {
   }
 
 
-
-    changeMedia = (addMedia) => {
+    addMedia = (addMedia) => {
       this.setState({
           media: [...this.state.media, addMedia]
       })
@@ -22,7 +21,7 @@ class WatchingListComponent extends React.Component {
         <div>
 
             <SearchBar
-                changeMedia={this.changeMedia}
+                addMedia={this.addMedia}
             />
 
           <div className="watch-list">

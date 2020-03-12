@@ -9,6 +9,9 @@ class SearchBar extends React.Component {
         searchMediaTitle: '',
     }
 
+    // so this takes the json which has a lot of stuff and chops it so it only has id and title
+    // the main reason its needed is because tv title is called name so i fixed it here so
+    // throughout rest of program it the title is title and we don't have to worry about it
     pickForPotential = (json) => {
         let temp;
         if (this.state.searchType === "search-movies") {
@@ -21,8 +24,11 @@ class SearchBar extends React.Component {
         }
     }
 
+    // had to make this for the same exact reason (title/name), but this query gives you back A LOT of stuff
+    // so we probably will end up adding more stuff to it, if you want to see all the info thats given uncomment the line below
     pickForChosen = (json) => {
         let temp;
+        //{console.log(json)}
         if (this.state.searchType === "search-movies") {
             temp = {id: json.id, poster_path: json.poster_path, title: json.title};
             return temp;
@@ -60,12 +66,12 @@ class SearchBar extends React.Component {
         if (this.state.searchType === "search-movies") {
             fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=8ae10d69b6a533cb7f6179647228aab1&language=en-US`)
                 .then(response => response.json())
-                .then(results => this.props.changeMedia(this.pickForChosen(results)))
+                .then(results => this.props.addMedia(this.pickForChosen(results)))
         }
         else {
             fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=8ae10d69b6a533cb7f6179647228aab1&language=en-US`)
                 .then(response => response.json())
-                .then(results => this.props.changeMedia(this.pickForChosen(results)))
+                .then(results => this.props.addMedia(this.pickForChosen(results)))
         }
     }
 
