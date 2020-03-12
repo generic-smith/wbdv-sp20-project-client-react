@@ -19,9 +19,10 @@ class SearchBar extends React.Component {
           </div>
           <div className="col">
 
-            <div className="row float-right">
-              <div className="mr-3"> Search</div>
-              <input type="text"/>
+            <div className="row float-right mr-3">
+
+              <input type="text" placeholder="Search movie in your list"/>
+              <button >Search</button>
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import './Styling.css';
 import WatchingGridComponent from "./WatchingGridComponent";
 import FollowListComponent from "./FollowListComponent";
 import WatchingListComponent from "./WatchingListComponent"
+import QueryBar from "./QueryBar";
 
 class ViewerProfileMainComponent extends React.Component {
 
@@ -15,9 +16,10 @@ class ViewerProfileMainComponent extends React.Component {
         return (
             <div className="container">
                 <LogoBar/>
-                {/*<div className="row border border-dark">*/}
-                {/*    <QueryBar/>*/}
-                {/*</div>*/}
+                <div className="row border border-dark">
+                    <QueryBar/>
+                </div>
+
                 <div className="row mt-2">
                     <div className="col-8 border border-dark stretch-down">
 

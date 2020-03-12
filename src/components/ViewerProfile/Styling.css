@@ -32,3 +32,11 @@
 .dropdown a:hover {
     background-color: #ddd;
 }
+#newMedia{
+    margin-left: 15px;
+    display: inline-block;
+}
+#search-media{
+    margin-left: 10px;
+    display: inline-block;
+}
