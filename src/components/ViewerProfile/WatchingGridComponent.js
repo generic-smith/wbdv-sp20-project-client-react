@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar"
 import WatchingCard from "./WatchingCard"
 
+
 const init = {
   media: [
     {_id: "123", title: "Movie 1"},
@@ -16,11 +17,11 @@ class WatchingGridComponent extends React.Component {
 
   render() {
     return (
-        <div>
-          <div className="row border border-dark">
+        <div className="row">
+
             <SearchBar/>
-          </div>
-          <div className="watch-list">
+
+          <div className="watch-grid">
             {this.state.media.map(function (media, index) {
                   return (
                       <WatchingCard

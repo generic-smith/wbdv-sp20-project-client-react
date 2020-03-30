@@ -1,6 +1,7 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import SearchItem from "./SearchItem";
+import './Styling.css';
 
 class SearchBar extends React.Component {
     state = {
@@ -55,10 +56,10 @@ class SearchBar extends React.Component {
 
     getPlaceHolder = () => {
         if (this.state.searchType === "search-movies") {
-            return "For new movies"
+            return "Search for new movies"
         }
         else {
-            return "For new shows"
+            return "Search for new shows"
         }
     }
 
@@ -78,13 +79,12 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-        <div className="row border border-dark search-bar">
-          <div className="col-3">
-            Your Watch List
-          </div>
+        <div className="row search-bar">
+          <h5 className="watchlist-text">Your Watch List</h5>
           <div className="col">
 
             <div className="row mr-1 float-right">
+                <h4 className="search-text mr-1"><i className="fa fa-search"></i></h4>
                 <select className="mr-1" id="search-media"
                         onChange={(e) => {
                     const newType = e.target.value;
@@ -94,11 +94,9 @@ class SearchBar extends React.Component {
                     <option value={"search-tv"}>TV Shows</option>
                     <option value={"search-users"}>Users</option>
                 </select>
-                <div className="search-text mr-1">Search</div>
 
 
-
-                <Dropdown>
+                <Dropdown className="dropdown" >
               <input className={"form-control make-bigger"} type="text" placeholder={this.getPlaceHolder()} onChange={e => {
                   this.setState({searchMediaTitle: e.target.value})
                   {e.target.value.length < 2 && this.setState({media: []})}
@@ -106,7 +104,7 @@ class SearchBar extends React.Component {
                   {e.target.value.length > 1 && this.state.searchType === "search-tv" && this.searchShows(e.target.value)}
               }} value={this.state.searchMediaTitle}/>
 
-              <div className={"pos-a bg-light"}>
+              <div className={"pos-a dropdown-content"}>
                   {this.state.media.map(entry =>
                       <SearchItem
                       media={entry}

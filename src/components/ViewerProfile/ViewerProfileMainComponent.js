@@ -3,7 +3,9 @@ import LogoBar from "./LogoBar";
 import './Styling.css';
 import WatchingGridComponent from "./WatchingGridComponent";
 import FollowListComponent from "./FollowListComponent";
-import WatchingListComponent from "./WatchingListComponent"
+import WatchingListComponent from "./WatchingListComponent";
+import "../../../node_modules/font-awesome/css/font-awesome.css"
+
 import QueryBar from "./QueryBar";
 
 class ViewerProfileMainComponent extends React.Component {
@@ -14,7 +16,7 @@ class ViewerProfileMainComponent extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="body">
                 <LogoBar/>
 
                 {/*<div className="row border border-dark">
@@ -22,7 +24,7 @@ class ViewerProfileMainComponent extends React.Component {
                 </div>*/}
 
                 <div className="row mt-2">
-                    <div className="col-8 border border-dark stretch-down">
+                    <div className="col-8 stretch-down">
 
                         {this.state.layout === "grid" &&
                         <div className="m-2">

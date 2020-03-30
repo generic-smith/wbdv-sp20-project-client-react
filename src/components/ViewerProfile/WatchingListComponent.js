@@ -24,7 +24,7 @@ class WatchingListComponent extends React.Component {
                 addMedia={this.addMedia}
             />
 
-          <div className="watch-list">
+          <div className="watch-list stretch-down row">
               {console.log(this.state.media.length > 0)}
             {this.state.media.length > 0 && this.state.media.map(function (media, index) {
                   return (

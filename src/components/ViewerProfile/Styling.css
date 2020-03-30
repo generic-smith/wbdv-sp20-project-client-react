@@ -1,9 +1,20 @@
 .stretch-down {
-    min-height: 350px;
+    min-height: 600px;
+}
+.logo{
+    padding-left: 10px;
 }
 
 .negative-margin {
     margin-right: -15px;
+}
+.login{
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.profile{
+    margin-right: 10px;
+    margin-top: 5px;
 }
 
 .pos-a {
@@ -14,11 +25,14 @@
     position: relative;
     display: inline-block;
 }
+.watchlist-text{
+    padding-left: 15px;
+}
 
 .dropdown-content {
-    display: none;
     position: absolute;
-    background-color: #f6f6f6;
+    background-color:#383838;
+    color: #ff9900;
     min-width: 230px;
     overflow: auto;
     border: 1px solid #ddd;
@@ -42,4 +56,38 @@
 #search-media{
     margin-left: 10px;
     display: inline-block;
+}
+.body{
+    background-color: #383838;
+    color: white;
+    height: 100%;
+}
+.search-bar{
+    border-style: solid;
+    border-color: #A9A9A9;
+    border-width: 2px;
+    margin-left: 10px;
+}
+
+.follow-list{
+    border-style: solid;
+    border-color: #A9A9A9;
+    border-width: 2px;
+    margin-top: 9px;
+}
+.watch-list{
+    margin-top: 5px;
+    border-style: solid;
+    border-color: #A9A9A9;
+    border-width: 2px;
+
+
+}
+.card-text{
+    color: black;
+}
+.card{
+    width: 14rem;
+    background-color: red;
+
 }
