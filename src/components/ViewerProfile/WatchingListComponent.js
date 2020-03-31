@@ -1,41 +1,36 @@
 import React from "react";
 import SearchBar from "./SearchBar"
-import WatchingRow from "./WatchingRow";
+import WatchingCard from "./WatchingRow"
 
+
+const init = {
+  media: [
+    {_id: "123", title: "Movie 1"},
+    {_id: "234", title: "Movie 2"},
+    {_id: "345", title: "Movie 3"}
+  ]
+};
 
 class WatchingListComponent extends React.Component {
 
-  state = {
-      media: []
-  }
-
-
-    addMedia = (addMedia) => {
-      this.setState({
-          media: [...this.state.media, addMedia]
-      })
-  }
+  state = init;
 
   render() {
     return (
-        <div>
+        <div className="row">
 
-            <SearchBar
-                addMedia={this.addMedia}
-            />
+            <SearchBar/>
 
-          <div className="watch-list stretch-down row">
-              {console.log(this.state.media.length > 0)}
-            {this.state.media.length > 0 && this.state.media.map(function (media, index) {
+          <div className="watch-grid">
+            {this.state.media.map(function (media, index) {
                   return (
-                      <WatchingRow
+                      <WatchingCard
                           media={media}
                       />
                   )
                 }
             )}
           </div>
-
         </div>
 
     )

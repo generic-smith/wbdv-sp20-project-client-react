@@ -1,9 +1,9 @@
 import React from "react";
 import LogoBar from "./LogoBar";
 import './Styling.css';
-import WatchingGridComponent from "./WatchingGridComponent";
-import FollowListComponent from "./FollowListComponent";
 import WatchingListComponent from "./WatchingListComponent";
+import FollowListComponent from "./FollowListComponent";
+import WatchingGridComponent from "./WatchingGridComponent";
 import "../../../node_modules/font-awesome/css/font-awesome.css"
 
 import QueryBar from "./QueryBar";
@@ -26,15 +26,15 @@ class ViewerProfileMainComponent extends React.Component {
                 <div className="row mt-2">
                     <div className="col-8 stretch-down">
 
-                        {this.state.layout === "grid" &&
-                        <div className="m-2">
-                            <WatchingGridComponent/>
-                        </div>
-                        }
-
                         {this.state.layout === "list" &&
                         <div className="m-2">
                             <WatchingListComponent/>
+                        </div>
+                        }
+
+                        {this.state.layout === "grid" &&
+                        <div className="m-2">
+                            <WatchingGridComponent/>
                         </div>
                         }
                     </div>
