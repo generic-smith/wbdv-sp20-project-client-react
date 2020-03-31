@@ -18,13 +18,13 @@ class WatchingGridComponent extends React.Component {
 
   render() {
     return (
-        <div>
+        <div className="ml-3">
 
             <SearchBar
                 addMedia={this.addMedia}
             />
 
-          <div className="watch-list stretch-down row">
+          <div className="watch-grid stretch-down row mt-2">
               {console.log(this.state.media.length > 0)}
             {this.state.media.length > 0 && this.state.media.map(function (media, index) {
                   return (

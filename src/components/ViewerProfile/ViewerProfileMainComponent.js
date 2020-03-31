@@ -11,7 +11,7 @@ import QueryBar from "./QueryBar";
 class ViewerProfileMainComponent extends React.Component {
 
     state = {
-        layout: "list"
+        layout: "grid"
     };
 
     render() {

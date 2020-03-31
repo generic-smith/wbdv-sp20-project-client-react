@@ -21,12 +21,10 @@ class WatchingListComponent extends React.Component {
 
             <SearchBar/>
 
-          <div className="watch-grid">
+          <div className="watch-list">
             {this.state.media.map(function (media, index) {
                   return (
-                      <WatchingCard
-                          media={media}
-                      />
+                      <div> </div>
                   )
                 }
             )}
