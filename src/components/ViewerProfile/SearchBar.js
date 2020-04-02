@@ -16,11 +16,11 @@ class SearchBar extends React.Component {
     pickForPotential = (json) => {
         let temp;
         if (this.state.searchType === "search-movies") {
-            temp = {id: json.id, title: json.title};
+            temp = {mediaId: json.id, title: json.title};
             return temp;
         }
         else {
-            temp = {id: json.id, title: json.name};
+            temp = {mediaId: json.id, title: json.name};
             return temp;
         }
     }
@@ -31,11 +31,11 @@ class SearchBar extends React.Component {
         let temp;
         //{console.log(json)}
         if (this.state.searchType === "search-movies") {
-            temp = {id: json.id, poster_path: json.poster_path, title: json.title};
+            temp = {mediaId: json.id, posterPath: json.poster_path, title: json.title};
             return temp;
         }
         else {
-            temp = {id: json.id, poster_path: json.poster_path, title: json.name};
+            temp = {mediaId: json.id, posterPath: json.poster_path, title: json.name};
             return temp;
         }
     }
@@ -104,12 +104,13 @@ class SearchBar extends React.Component {
                   {e.target.value.length > 1 && this.state.searchType === "search-tv" && this.searchShows(e.target.value)}
               }} value={this.state.searchMediaTitle}/>
 
+              {this.state.media.length > 0 &&
               <div className={"pos-a dropdown-content"}>
                   {this.state.media.map(entry =>
                       <SearchItem
-                      media={entry}
-                      addThisId={this.addThisId}/> )}
-              </div>
+                          media={entry}
+                          addThisId={this.addThisId}/>)}
+              </div>}
                 </Dropdown>
 
             </div>

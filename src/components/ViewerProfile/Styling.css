@@ -27,13 +27,13 @@
 }
 .watchlist-text{
     padding-left: 15px;
+    margin-top: 5px;
 }
 
 .dropdown-content {
     position: absolute;
     background: linear-gradient(black,#383838, #A9A9A9);
     color: #ff9900;
-    min-width: 230px;
     overflow: auto;
     border: 1px solid #ddd;
     z-index: 1;
@@ -67,6 +67,8 @@
     border-color: #A9A9A9;
     border-width: 2px;
     margin-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .follow-list{
@@ -87,7 +89,7 @@
     color: black;
 }
 .card{
-    width: 14rem;
+    width: 11.8rem;
     background-color: red;
 
 }

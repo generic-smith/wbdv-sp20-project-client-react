@@ -4,9 +4,17 @@ import './Styling.css';
 import WatchingListComponent from "./WatchingListComponent";
 import FollowListComponent from "./FollowListComponent";
 import WatchingGridComponent from "./WatchingGridComponent";
+import {Provider} from "react-redux";
 import "../../../node_modules/font-awesome/css/font-awesome.css"
+import userReducer from "../../reducers/userReducer";
+import {combineReducers, createStore} from "redux";
+import mediaReducer from "../../reducers/mediaReducer";
+const rootReducer = combineReducers({
+    user: userReducer,
+    media: mediaReducer,
+})
 
-import QueryBar from "./QueryBar";
+const store = createStore(rootReducer)
 
 class ViewerProfileMainComponent extends React.Component {
 
@@ -16,6 +24,7 @@ class ViewerProfileMainComponent extends React.Component {
 
     render() {
         return (
+            <Provider store={store}>
             <div className="body">
                 <LogoBar/>
 
@@ -26,17 +35,18 @@ class ViewerProfileMainComponent extends React.Component {
                 <div className="row mt-2">
                     <div className="col-8 stretch-down">
 
+                        {this.state.layout === "grid" &&
+                        <div className="m-2">
+                            <WatchingGridComponent/>
+                        </div>
+                        }
+
                         {this.state.layout === "list" &&
                         <div className="m-2">
                             <WatchingListComponent/>
                         </div>
                         }
 
-                        {this.state.layout === "grid" &&
-                        <div className="m-2">
-                            <WatchingGridComponent/>
-                        </div>
-                        }
                     </div>
                     <div className="col-4 stretch-down">
                         <FollowListComponent/>
@@ -44,7 +54,7 @@ class ViewerProfileMainComponent extends React.Component {
                 </div>
 
             </div>
-
+            </Provider>
         )
     }
 }

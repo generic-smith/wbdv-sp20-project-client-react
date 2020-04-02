@@ -6,7 +6,7 @@ class SearchItem extends React.Component {
     return (
         <div className={"row m-1 d-flex"}>
           <div className="col-9">{this.props.media.title}</div>
-          <button onClick={() => this.props.addThisId(this.props.media.id)} className="col-3">+</button>
+          <button onClick={() => this.props.addThisId(this.props.media.mediaId)} className="col-3">+</button>
         </div>
     )
   }
