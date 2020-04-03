@@ -1,44 +1,48 @@
 .stretch-down {
-    min-height: 800px;
+  min-height: 800px;
 }
-.logo{
-    padding-left: 10px;
+
+.logo {
+  padding-left: 10px;
 }
 
 .negative-margin {
-    margin-right: -15px;
+  margin-right: -15px;
 }
-.login{
-    margin-right: 10px;
-    margin-top: 5px;
+
+.login {
+  margin-right: 10px;
+  margin-top: 5px;
 }
-.profile{
-    margin-right: 10px;
-    margin-top: 5px;
+
+.profile {
+  margin-right: 10px;
+  margin-top: 5px;
 }
 
 .pos-a {
-    position: absolute;
+  position: absolute;
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
-.watchlist-text{
-    padding-left: 15px;
-    margin-top: 5px;
+
+.watchlist-text {
+  padding-left: 15px;
+  margin-top: 5px;
 }
 
 .dropdown-content {
-    position: absolute;
-    background: linear-gradient(black,#383838, #A9A9A9);
-    color: #ff9900;
-    overflow: auto;
-    border: 1px solid #ddd;
-    z-index: 1;
-}
+  position: absolute;
+  background: linear-gradient(black, #383838, #A9A9A9);
+  color: #ff9900;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
 
+}
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
@@ -46,50 +50,67 @@
     display: block;
 }
 
+
 .dropdown a:hover {
-    background-color: #ddd;
-}
-#newMedia{
-    margin-left: 15px;
-    display: inline-block;
-}
-#search-media{
-    margin-left: 10px;
-    display: inline-block;
-}
-.body{
-    background: linear-gradient(black,#383838, #A9A9A9);
-    color: white;
-    height: 100%;
-}
-.search-bar{
-    border-style: solid;
-    border-color: #A9A9A9;
-    border-width: 2px;
-    margin-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+  background-color: #ddd;
 }
 
-.follow-list{
-    border-style: solid;
-    border-color: #A9A9A9;
-    border-width: 2px;
-    margin-top: 9px;
+#newMedia {
+  margin-left: 15px;
+  display: inline-block;
 }
-.watch-grid{
-    margin-top: 5px;
-    border-style: solid;
-    border-color: #A9A9A9;
+
+#search-media {
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.search-item{
+    border-bottom: black;
     border-width: 2px;
+}
+
+.watching-card{
+  padding: 20px;
+}
+
+.body {
+  background: linear-gradient(black, #383838, #A9A9A9);
+  color: white;
+  height: 100%;
+}
+
+.search-bar {
+  border-style: solid;
+  border-color: #A9A9A9;
+  border-width: 2px;
+  margin-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.follow-list {
+  border-style: solid;
+  border-color: #A9A9A9;
+  border-width: 2px;
+  margin-top: 9px;
+}
+
+.watch-grid {
+  margin-top: 5px;
+  border-style: solid;
+  border-color: #A9A9A9;
+  border-width: 2px;
 
 
 }
-.card-text{
-    color: black;
+
+.card-text {
+  color: black;
 }
-.card{
-    width: 11.8rem;
-    background-color: red;
+
+.card {
+  width: 11.8rem;
+  background-color: red;
 
 }

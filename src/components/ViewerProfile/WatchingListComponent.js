@@ -2,7 +2,6 @@ import React from "react";
 import SearchBar from "./SearchBar"
 import WatchingCard from "./WatchingRow"
 
-
 const init = {
   media: [
     {_id: "123", title: "Movie 1"},
@@ -19,12 +18,12 @@ class WatchingListComponent extends React.Component {
     return (
         <div className="row">
 
-            <SearchBar/>
+          <SearchBar/>
 
           <div className="watch-list">
             {this.state.media.map(function (media, index) {
                   return (
-                      <div> </div>
+                      <div></div>
                   )
                 }
             )}

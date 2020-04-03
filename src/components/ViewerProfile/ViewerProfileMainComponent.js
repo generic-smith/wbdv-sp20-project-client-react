@@ -9,54 +9,55 @@ import "../../../node_modules/font-awesome/css/font-awesome.css"
 import userReducer from "../../reducers/userReducer";
 import {combineReducers, createStore} from "redux";
 import mediaReducer from "../../reducers/mediaReducer";
-const rootReducer = combineReducers({
-    user: userReducer,
-    media: mediaReducer,
-})
 
-const store = createStore(rootReducer)
+const rootReducer = combineReducers({
+  user: userReducer,
+  media: mediaReducer,
+});
+
+const store = createStore(rootReducer);
 
 class ViewerProfileMainComponent extends React.Component {
 
-    state = {
-        layout: "grid"
-    };
+  state = {
+    layout: "grid"
+  };
 
-    render() {
-        return (
-            <Provider store={store}>
-            <div className="body">
-                <LogoBar/>
+  render() {
+    return (
+        <Provider store={store}>
+          <div className="body">
+            <LogoBar/>
 
-                {/*<div className="row border border-dark">
+            {/*<div className="row border border-dark">
                     <QueryBar/>
                 </div>*/}
 
-                <div className="row mt-2">
-                    <div className="col-8 stretch-down">
+            <div className="row mt-2">
+              <div className="col-8 stretch-down">
 
-                        {this.state.layout === "grid" &&
-                        <div className="m-2">
-                            <WatchingGridComponent/>
-                        </div>
-                        }
-
-                        {this.state.layout === "list" &&
-                        <div className="m-2">
-                            <WatchingListComponent/>
-                        </div>
-                        }
-
-                    </div>
-                    <div className="col-4 stretch-down">
-                        <FollowListComponent/>
-                    </div>
+                {this.state.layout === "grid" &&
+                <div className="m-2">
+                  <WatchingGridComponent/>
                 </div>
+                }
 
+                {this.state.layout === "list" &&
+                <div className="m-2">
+                  <WatchingListComponent/>
+                </div>
+                }
+
+              </div>
+              <div className="col-4 stretch-down">
+                <FollowListComponent/>
+              </div>
             </div>
-            </Provider>
-        )
-    }
+
+          </div>
+        </Provider>
+    )
+  }
 }
 
 export default ViewerProfileMainComponent
