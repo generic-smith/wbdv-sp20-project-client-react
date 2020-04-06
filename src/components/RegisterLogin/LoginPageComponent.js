@@ -1,21 +1,46 @@
-import React from "react";
+import React, {useState} from "react";
 import {BrowserRouter as Router, Link, Redirect, Route} from "react-router-dom";
 import userService from "../../services/UserService"
 import {loginUser} from "../../actions/userActions";
 import {connect} from "react-redux";
 import { useHistory } from 'react-router-dom';
+import Alert from "react-bootstrap/Alert";
+
+function ErrorMessage(msg) {
+    const [show, setShow] = useState(true);
+    if (show) {
+        return (
+            <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+                <Alert.Heading>Login Failed</Alert.Heading>
+                <p>
+                    {msg.msg}
+                </p>
+            </Alert>
+        );
+    }
+    return <div/>
+}
 
 class LoginPageComponent extends React.Component {
 
+    checkForSame = () => {
+        if (this.props.user.username === "nate" && this.props.user.password === "tote") {
+            this.setState({failedLogin: 1})
+        }
+    }
+
+
     state = {
         username: "",
-        password: ""
+        password: "",
+        failedLogin: 0
     }
 
 
     render() {
         return (
             <div className="container">
+                {this.state.failedLogin === 1 && <ErrorMessage msg="Login Failed"/> }
                 <h1>Sign In</h1>
                 <form>
                     <div className="form-group row">
@@ -51,7 +76,7 @@ class LoginPageComponent extends React.Component {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
-                            <button type="button" className="btn btn-primary btn-block wbdv-login" onClick={() => this.props.login(this.state)}>Sign in</button>
+                            <button type="button" className="btn btn-primary btn-block wbdv-login" onClick={() => this.props.login(this.state).then(this.checkForSame)}>Sign in</button>
                         </div>
                         <label className="col-sm-2 col-form-label"></label>
                         <label className="col-sm-10" id="signUp">
