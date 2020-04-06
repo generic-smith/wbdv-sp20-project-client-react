@@ -10,12 +10,6 @@ import userReducer from "../../reducers/userReducer";
 import {combineReducers, createStore} from "redux";
 import mediaReducer from "../../reducers/mediaReducer";
 
-const rootReducer = combineReducers({
-  user: userReducer,
-  media: mediaReducer,
-});
-
-const store = createStore(rootReducer);
 
 class ViewerProfileMainComponent extends React.Component {
 
@@ -25,7 +19,7 @@ class ViewerProfileMainComponent extends React.Component {
 
   render() {
     return (
-        <Provider store={store}>
+
           <div className="body">
             <LogoBar/>
 
@@ -55,7 +49,7 @@ class ViewerProfileMainComponent extends React.Component {
             </div>
 
           </div>
-        </Provider>
+
     )
   }
 }

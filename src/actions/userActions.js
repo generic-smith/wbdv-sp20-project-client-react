@@ -1,5 +1,11 @@
 export const CREATE_USER = "CREATE_USER"
-export const createUser = (user) => ({
+export const createUser = (success) => ({
     type: CREATE_USER,
-    newUser: user
+    success: success
+})
+
+export const LOGIN_USER = "LOGIN_USER"
+export const loginUser = (response) => ({
+    type: LOGIN_USER,
+    newUser: response
 })

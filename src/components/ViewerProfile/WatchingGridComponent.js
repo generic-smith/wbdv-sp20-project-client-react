@@ -61,9 +61,6 @@ const stateToPropertyMapper = (state) => ({
 });
 
 const dispatcherToPropertyMapper = (dispatch) => ({
-  createUser: (user) =>
-      userService.createUser(user)
-      .then(actualUser => dispatch(createUser(actualUser))),
   addMedia: (uid, media) =>
       mediaService.addMedia(uid, media)
       .then(response => dispatch(addMedia(media))),
