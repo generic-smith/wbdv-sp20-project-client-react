@@ -4,11 +4,14 @@ import './Styling.css';
 import WatchingListComponent from "./WatchingListComponent";
 import FollowListComponent from "./FollowListComponent";
 import WatchingGridComponent from "./WatchingGridComponent";
+import {connect} from "react-redux";
 import {Provider} from "react-redux";
 import "../../../node_modules/font-awesome/css/font-awesome.css"
 import userReducer from "../../reducers/userReducer";
 import {combineReducers, createStore} from "redux";
 import mediaReducer from "../../reducers/mediaReducer";
+import mediaService from "../../services/MediaService";
+import {addMedia, findWatchlist} from "../../actions/mediaActions";
 
 
 class ViewerProfileMainComponent extends React.Component {
@@ -21,7 +24,7 @@ class ViewerProfileMainComponent extends React.Component {
     return (
 
           <div className="body">
-            <LogoBar/>
+            <LogoBar username={this.props.user.username}/>
 
             {/*<div className="row border border-dark">
                     <QueryBar/>
@@ -54,4 +57,17 @@ class ViewerProfileMainComponent extends React.Component {
   }
 }
 
-export default ViewerProfileMainComponent
+const stateToPropertyMapper = (state) => ({
+    media: state.media.media,
+    user: state.user.user
+});
+
+const dispatcherToPropertyMapper = (dispatch) => ({
+
+
+});
+
+export default connect(
+    stateToPropertyMapper,
+    dispatcherToPropertyMapper)
+(ViewerProfileMainComponent)

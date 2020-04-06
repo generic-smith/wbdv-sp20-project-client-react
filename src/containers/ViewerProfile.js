@@ -29,11 +29,12 @@ class ViewerProfile extends React.Component {
                            render={(props) =>
                                <RegisterPageComponent
                                    {...props}/>}/>
-                    <Route path="/home"
+                    <Route path="/:userId/home"
                            exact={true}
                            render={(props) =>
                             <ViewerProfileMainComponent
-                                {...props}/>}/>
+                                {...props}
+                                userId={props.match.params.userId}/>}/>
                     <Route path="/login"
                            render={(props) =>
                                <LoginPageComponent
