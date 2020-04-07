@@ -7,11 +7,8 @@ import WatchingGridComponent from "./WatchingGridComponent";
 import {connect} from "react-redux";
 import {Provider} from "react-redux";
 import "../../../node_modules/font-awesome/css/font-awesome.css"
-import userReducer from "../../reducers/userReducer";
-import {combineReducers, createStore} from "redux";
-import mediaReducer from "../../reducers/mediaReducer";
-import mediaService from "../../services/MediaService";
-import {addMedia, findWatchlist} from "../../actions/mediaActions";
+import userService from "../../services/UserService"
+import {loginUser} from "../../actions/userActions";
 
 
 class ViewerProfileMainComponent extends React.Component {
@@ -20,15 +17,17 @@ class ViewerProfileMainComponent extends React.Component {
     layout: "grid"
   };
 
-  render() {
+  componentDidMount() {
+          this.props.profileRetrieve();
+          return;
+  }
+
+
+    render() {
     return (
 
           <div className="body">
             <LogoBar username={this.props.user.username}/>
-
-            {/*<div className="row border border-dark">
-                    <QueryBar/>
-                </div>*/}
 
             <div className="row mt-2">
               <div className="col-8 stretch-down">
@@ -63,7 +62,9 @@ const stateToPropertyMapper = (state) => ({
 });
 
 const dispatcherToPropertyMapper = (dispatch) => ({
-
+    profileRetrieve: () =>
+        userService.profileRetrieve()
+            .then(user => dispatch(loginUser(user)))
 
 });
 

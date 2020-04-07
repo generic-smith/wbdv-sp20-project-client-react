@@ -3,7 +3,7 @@ import {CREATE_USER, LOGIN_USER} from "../actions/userActions";
 const initialState = {
     registerSuccess: 3,
     user: {
-        username: "nate", password: "tote", id: 3
+        username: "Guest", password: "Guest", id: 33301
     }
 }
 

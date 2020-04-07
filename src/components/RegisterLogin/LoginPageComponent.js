@@ -24,14 +24,26 @@ function ErrorMessage(msg) {
 class LoginPageComponent extends React.Component {
 
     checkForSame = () => {
-        if (this.props.user.username === "nate" && this.props.user.password === "tote") {
+        if (this.props.user.username === "guest" && this.props.user.password === "guest") {
             this.setState({failedLogin: 1})
         }
         else {
-            this.props.history.push("/" + this.props.user.id + "/home")
+            this.props.history.push("/home")
         }
     }
 
+
+    handleLogin = () => {
+        if (this.state.username === "guest") {
+            this.setState({failedLogin: 3})
+        }
+        else if (this.state.username === "") {
+            this.setState({failedLogin: 4})
+        }
+        else {
+            this.props.login(this.state).then(this.checkForSame)
+        }
+    };
 
     state = {
         username: "",
@@ -44,6 +56,8 @@ class LoginPageComponent extends React.Component {
         return (
             <div className="container">
                 {this.state.failedLogin === 1 && <ErrorMessage msg="Login Failed"/> }
+                {this.state.failedLogin === 3 && <ErrorMessage msg="Cannot login as guest"/>}
+                {this.state.failedLogin === 4 && <ErrorMessage msg="Cannot login in as empty user"/>}
                 <h1>Sign In</h1>
                 <form>
                     <div className="form-group row">
@@ -54,7 +68,6 @@ class LoginPageComponent extends React.Component {
                                    id="username"
                                    value={this.state.username}
                                    placeholder="Sean" onChange={e => {
-                                       console.log(this.props.user)
                                 const user = e.target.value
                                 this.setState(ps => ({
                                     ...ps,
@@ -79,15 +92,12 @@ class LoginPageComponent extends React.Component {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
-                            <button type="button" className="btn btn-primary btn-block wbdv-login" onClick={() => this.props.login(this.state).then(this.checkForSame)}>Sign in</button>
+                            <button type="button" className="btn btn-primary btn-block wbdv-login" onClick={() => this.handleLogin()}>Sign in</button>
                         </div>
                         <label className="col-sm-2 col-form-label"></label>
                         <label className="col-sm-10" id="signUp">
                             <Link to="/register">Sign Up</Link>
-                            {/*
-                            <a href="http://localhost:8080/register/register.template.client.html"
-                               className="float-right">Cancel</a>
-                               */}
+                            <Link className="float-right" to="/home">Sign in as Guest</Link>
                         </label>
 
                     </div>

@@ -16,7 +16,7 @@ class LogoBar extends React.Component {
           </div>
           <div className="col text-right align-middle">
               <div className="row float-right mr-1">
-              <h5 className="text-center mr-1"> Logged in as {this.props.username} </h5>
+              <h5 className="text-center mr-1"> Logged in as {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)} </h5>
 
             <button type="button" className="btn btn-light profile">Profile
             </button>

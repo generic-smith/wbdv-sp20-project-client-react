@@ -10,11 +10,24 @@ import {connect} from "react-redux";
 class WatchingGridComponent extends React.Component {
 
   componentDidMount() {
-    this.props.findWatchlist(this.props.user.id)
+      if (this.props.user.id != 33301) {
+          this.props.findWatchlist(this.props.user.id)
+      }
   }
 
-  fixUp = (media) => {
-    this.props.addMedia(this.props.user.id, media)
+  componentDidUpdate(prevProps, prevState, snapshot) {
+      if (prevProps.user.id != this.props.user.id && (this.props.user.id != 33301)) {
+          this.props.findWatchlist(this.props.user.id);
+      }
+  }
+
+    fixUp = (media) => {
+      if (this.props.userId != 33301) {
+          this.props.addMedia(this.props.user.id, media)
+      }
+      else {
+          addMedia(media);
+      }
   };
 
   render() {
@@ -24,16 +37,6 @@ class WatchingGridComponent extends React.Component {
           <SearchBar
               addMedia={this.fixUp}
           />
-
-          {
-            /*
-            USE THIS TO CREATE USER IN DATABASE - IT WONT WORK THE FIRST TIME WITHOUT IT
-            <button onClick={() => this.props.createUser(this.props.user)}>
-                create user
-            </button>
-
-             */
-          }
 
           <div className="watch-grid stretch-down row mt-2 pt-1">
 

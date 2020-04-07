@@ -20,20 +20,7 @@ const ErrorMessage = (msg) => {
     return <div/>
 }
 
-function SuccessMessage(msg) {
-    const [show, setShow] = useState(true);
-    if (show) {
-        return (
-            <Alert variant="success" onClose={() => setShow(false)} dismissible>
-                <Alert.Heading>Registration Success</Alert.Heading>
-                <p>
-                    {msg.msg}
-                </p>
-            </Alert>
-        );
-    }
-    return <div/>
-}
+
 
 class RegisterPageComponent extends React.Component {
 
@@ -41,8 +28,10 @@ class RegisterPageComponent extends React.Component {
         user: {username: "", password: ""},
         pass1: "",
         pass2: "",
-        passNotMatch: false
+        passNotMatch: 0
     };
+
+
 
 
     refresh = () => {
@@ -62,8 +51,11 @@ class RegisterPageComponent extends React.Component {
 
     verifyAndSend = () => {
         if (this.state.pass1 !== this.state.pass2 || (this.state.pass1 === "")) {
-            this.setState({passNotMatch: true})
-        } else {
+            this.setState({passNotMatch: 1})
+        } else if (this.state.user.username === "guest" || this.state.user.username === "Guest") {
+            this.setState({passNotMatch: 2})
+        }
+        else {
             this.setState(prevstate => ({
                 ...prevstate,
                 user: {...prevstate.user, password: prevstate.pass1}
@@ -76,9 +68,14 @@ class RegisterPageComponent extends React.Component {
 
         return (
             <div className="container">
-                {this.state.passNotMatch && <ErrorMessage msg="The two passwords do not match or one of them is empty"/>}
+                {/** we locally realized that the passwords do not match **/}
+                {this.state.passNotMatch === 1 && <ErrorMessage msg="The two passwords do not match or one of them is empty"/>}
+                {/** we locally realized that they tried to register as guest **/}
+                {this.state.passNotMatch === 2 && <ErrorMessage msg="You cannot register as the Guest user!"/>}
+                {/** server tells us no because there already exists a user with that username **/}
                 {this.props.registerSuccess === 0 && <ErrorMessage msg="Account with that username already exists"/>}
-                {this.props.registerSuccess === 1 && <SuccessMessage msg="Account successfully registered"/>}
+                {/** Registration was successful so bring them to login page **/}
+                {this.props.registerSuccess === 1 && this.props.history.push("/login")}
                 <h1>Register</h1>
                 <form>
                     <div className="form-group row">

@@ -14,11 +14,20 @@ export const loginUser = (user) =>
         body: JSON.stringify(user),
         headers: {
             'content-type': 'application/json'
-        }
+        },
+        credentials: "include"
     })
         .then(response => response.text()).then(text => text.length ? JSON.parse(text) : {});
 
+export const profileRetrieve = () =>
+    fetch(`http://localhost:8080/api/profile`, {
+        method: "POST",
+        credentials: "include"
+    })
+        .then(response => response.json());
+
 export default {
     createUser,
-    loginUser
+    loginUser,
+    profileRetrieve
 }
