@@ -34,7 +34,9 @@ class ViewerProfileMainComponent extends React.Component {
 
                 {this.state.layout === "grid" &&
                 <div className="m-2">
-                  <WatchingGridComponent/>
+                  <WatchingGridComponent
+                      {...this.props}
+                      history={this.props.history}/>
                 </div>
                 }
 

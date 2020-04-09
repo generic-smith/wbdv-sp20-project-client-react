@@ -10,19 +10,20 @@ import {connect} from "react-redux";
 class WatchingGridComponent extends React.Component {
 
   componentDidMount() {
-      if (this.props.user.id != 33301) {
+    if (this.props.user.id !== 33301) {
           this.props.findWatchlist(this.props.user.id)
       }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-      if (prevProps.user.id != this.props.user.id && (this.props.user.id != 33301)) {
+    if (prevProps.user.id !== this.props.user.id && (this.props.user.id
+        !== 33301)) {
           this.props.findWatchlist(this.props.user.id);
       }
   }
 
     fixUp = (media) => {
-      if (this.props.userId != 33301) {
+      if (this.props.userId !== 33301) {
           this.props.addMedia(this.props.user.id, media)
       }
       else {
@@ -31,7 +32,9 @@ class WatchingGridComponent extends React.Component {
   };
 
   render() {
+    let that = this;
     return (
+
         <div className="ml-3">
 
           <SearchBar
@@ -41,9 +44,10 @@ class WatchingGridComponent extends React.Component {
           <div className="watch-grid stretch-down row mt-2 pt-1">
 
             {this.props.media.length > 0 && this.props.media.map(
-                function (media, index) {
+                function (media, key) {
                   return (
                       <WatchingCard
+                          history={that.props.history}
                           media={media}
                       />
                   )
