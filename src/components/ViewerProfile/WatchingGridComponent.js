@@ -5,29 +5,28 @@ import userService from "../../services/UserService"
 import mediaService from "../../services/MediaService"
 import {createUser} from "../../actions/userActions";
 import {addMedia, findWatchlist} from "../../actions/mediaActions";
-import {connect} from "react-redux";
+import {connect, createDispatchHook} from "react-redux";
 
 class WatchingGridComponent extends React.Component {
 
   componentDidMount() {
-    if (this.props.user.id !== 33301) {
           this.props.findWatchlist(this.props.user.id)
-      }
+
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.user.id !== this.props.user.id && (this.props.user.id
-        !== 33301)) {
-          this.props.findWatchlist(this.props.user.id);
-      }
+    if (prevProps.user.id !== this.props.user.id) {
+        this.props.findWatchlist(this.props.user.id);
+    }
+
   }
 
     fixUp = (media) => {
-      if (this.props.userId !== 33301) {
+      if (this.props.user.id !== 11) {
           this.props.addMedia(this.props.user.id, media)
       }
       else {
-          addMedia(media);
+          this.props.addMediaLocally(media);
       }
   };
 
@@ -68,6 +67,8 @@ const stateToPropertyMapper = (state) => ({
 });
 
 const dispatcherToPropertyMapper = (dispatch) => ({
+  addMediaLocally: (media) =>
+    dispatch(addMedia(media)),
   addMedia: (uid, media) =>
       mediaService.addMedia(uid, media)
       .then(response => dispatch(addMedia(media))),

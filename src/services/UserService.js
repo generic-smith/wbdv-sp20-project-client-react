@@ -1,5 +1,8 @@
+const url = 'https://wbdv-media-app-server.herokuapp.com/api';
+const url2 = 'http://localhost:8080/api'
+
 export const createUser = (user) =>
-    fetch(`https://wbdv-media-app-server.herokuapp.com/api/users`, {
+    fetch(`${url}/users`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -9,7 +12,7 @@ export const createUser = (user) =>
         .then(response => response.json());
 
 export const loginUser = (user) =>
-    fetch(`https://wbdv-media-app-server.herokuapp.com/api/user-login`, {
+    fetch(`${url}/user-login`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -20,7 +23,7 @@ export const loginUser = (user) =>
         .then(response => response.text()).then(text => text.length ? JSON.parse(text) : {});
 
 export const profileRetrieve = () =>
-    fetch(`https://wbdv-media-app-server.herokuapp.com/api/profile`, {
+    fetch(`${url}/profile`, {
         method: "POST",
         credentials: "include"
     })
