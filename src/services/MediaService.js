@@ -1,9 +1,9 @@
 export const findWatchlist = (uid) =>
-    fetch(`http://localhost:8080/api/users/${uid}/watchlist`)
+    fetch(`https://wbdv-media-app-server.herokuapp.com/api/users/${uid}/watchlist`)
         .then(response => response.json());
 
 export const addMedia = (uid, media) =>
-    fetch(`http://localhost:8080/api/users/${uid}/watchlist`, {
+    fetch(`https://wbdv-media-app-server.herokuapp.com/users/${uid}/watchlist`, {
         method: "POST",
         body: JSON.stringify(media),
         headers: {

@@ -1,5 +1,5 @@
 export const createUser = (user) =>
-    fetch(`http://localhost:8080/api/users`, {
+    fetch(`https://wbdv-media-app-server.herokuapp.com/api/users`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -9,7 +9,7 @@ export const createUser = (user) =>
         .then(response => response.json());
 
 export const loginUser = (user) =>
-    fetch(`http://localhost:8080/api/user-login`, {
+    fetch(`https://wbdv-media-app-server.herokuapp.com/api/user-login`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -20,7 +20,7 @@ export const loginUser = (user) =>
         .then(response => response.text()).then(text => text.length ? JSON.parse(text) : {});
 
 export const profileRetrieve = () =>
-    fetch(`http://localhost:8080/api/profile`, {
+    fetch(`https://wbdv-media-app-server.herokuapp.com/api/profile`, {
         method: "POST",
         credentials: "include"
     })
