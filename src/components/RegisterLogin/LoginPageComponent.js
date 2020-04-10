@@ -24,7 +24,7 @@ function ErrorMessage(msg) {
 class LoginPageComponent extends React.Component {
 
     checkForSame = () => {
-        if (this.props.user.username === "guest" && this.props.user.password === "guest") {
+        if (this.props.user.username === "Guest" && this.props.user.password === "Guest") {
             this.setState({failedLogin: 1})
         }
         else {
