@@ -9,15 +9,26 @@ import {connect, createDispatchHook} from "react-redux";
 
 class WatchingGridComponent extends React.Component {
 
-  componentDidMount() {
-          this.props.findWatchlist(this.props.user.id)
+  state = {
+      viewOnly: false
+  }
 
+  componentDidMount() {
+      if (this.props.uid !== -1) {
+          this.setState({viewOnly: true}, () => this.props.findWatchlist(this.props.uid));
+      }
+      else {
+          this.props.findWatchlist(this.props.user.id);
+      }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.user.id !== this.props.user.id) {
-        this.props.findWatchlist(this.props.user.id);
-    }
+      if (prevProps.uid === -1 && this.props.uid !== -1) {
+          this.setState({viewOnly: true}, () => this.props.findWatchlist(this.props.uid));
+      }
+      else if (prevProps.uid !== this.props.uid && this.props.uid === -1) {
+          this.props.findWatchlist(this.props.user.id);
+      }
 
   }
 
@@ -36,9 +47,9 @@ class WatchingGridComponent extends React.Component {
 
         <div className="ml-3">
 
-          <SearchBar
+            {!this.state.viewOnly && <SearchBar
               addMedia={this.fixUp}
-          />
+          />}
           <div className="watch-grid stretch-down row mt-2 pt-1">
 
             {this.props.media.length > 0 && this.props.media.map(

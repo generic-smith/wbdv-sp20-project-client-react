@@ -38,6 +38,14 @@ class ViewerProfile extends React.Component {
                      render={(props) =>
                          <ViewerProfileMainComponent
                              {...props}
+                             uid={-1}
+                             history={props.history}/>}/>
+              <Route path="/user/:id"
+                     exact={true}
+                     render={(props) =>
+                         <ViewerProfileMainComponent
+                             {...props}
+                             uid={props.match.params.id}
                              history={props.history}/>}/>
               <Route path="/login"
                      render={(props) =>

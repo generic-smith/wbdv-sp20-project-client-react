@@ -27,10 +27,18 @@ export const profileRetrieve = () =>
         method: "POST",
         credentials: "include"
     })
+        .then(response => response.text()).then(text => text.length ? JSON.parse(text) : {});
+
+export const logoutUser = () =>
+    fetch(`${url}/profile`, {
+        method: "DELETE",
+        credentials: "include"
+    })
         .then(response => response.json());
 
 export default {
     createUser,
     loginUser,
-    profileRetrieve
+    profileRetrieve,
+    logoutUser
 }

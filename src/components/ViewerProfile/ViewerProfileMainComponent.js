@@ -17,12 +17,14 @@ class ViewerProfileMainComponent extends React.Component {
     layout: "grid"
   };
 
-  componentDidMount() {
-          this.props.profileRetrieve();
-          if (this.props.user.username === "" || this.props.user.id === -1) {
-              this.props.history.push("/login")
-          }
+  doCheck() {
+      if (this.props.user.username === "" || this.props.user.id === -1) {
+          this.props.history.push("/login")
+      }
+  }
 
+  componentDidMount() {
+          this.props.profileRetrieve().then(() => this.doCheck());
   }
 
   logout = () => {
@@ -75,7 +77,8 @@ const stateToPropertyMapper = (state) => ({
 
 const dispatcherToPropertyMapper = (dispatch) => ({
     logout: () =>
-        dispatch(logout()),
+        userService.logoutUser()
+            .then(response => dispatch(logout())),
     profileRetrieve: () =>
         userService.profileRetrieve()
             .then(user => dispatch(loginUser(user)))
