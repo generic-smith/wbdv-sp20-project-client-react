@@ -1,9 +1,10 @@
 import React from "react";
 import god from "./morgan_freeman_is_god.jpg"
+import {Link} from "react-router-dom";
 class WatchingCard extends React.Component {
 
   openEditor = () => {
-    this.props.history.push(`home/details/${this.props.media._id}`);
+    this.props.history.push(`home/details/${this.props.media.mediaId}`);
   };
 
   render() {
@@ -20,7 +21,12 @@ class WatchingCard extends React.Component {
                  alt="Poster"/>
             }
             <div className={"card-body"}>
-              <i className={"card-text"}>{this.props.media.title}</i>
+                <Link to={`/home/details/${this.props.media.mediaId}`}>
+              <i className={"card-text"}>
+                  {this.props.media.title}
+
+              </i>
+                </Link>
             </div>
           </div>
         </div>

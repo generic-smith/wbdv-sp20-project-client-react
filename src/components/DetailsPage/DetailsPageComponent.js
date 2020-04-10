@@ -4,9 +4,26 @@ import god from "../ViewerProfile/morgan_freeman_is_god.jpg";
 
 class DetailsPageComponent extends React.Component {
 
+  componentDidMount() {
+    // only movie for now
+    const mediaId = this.props.match.params.mediaId
+    fetch(`https://api.themoviedb.org/3/movie/${mediaId}?api_key=8ae10d69b6a533cb7f6179647228aab1&language=en-US`)
+        .then(response => response.json())
+        .then(movie => {
+          this.setState({
+            movie: movie
+          })
+        })
+  }
+
+
+
   goBack = () => {
     this.props.history.push(`/home`);
   };
+  state ={
+    movie:{}
+  }
 
   render() {
     return (
@@ -20,7 +37,9 @@ class DetailsPageComponent extends React.Component {
               </div>
             </div>
             <div className="container row details-page-details stretch-down">
-              <div className="details-page-title"><h2>{this.props.title}</h2>
+              <div className="details-page-title"><h2>{this.state.movie.original_title}</h2>
+                <img className={"card-image-top"}
+                     src={`https://image.tmdb.org/t/p/w200${this.state.movie.poster_path}`} alt="Poster" width={187} height={300}/>
               </div>
 
               <div className="col-md-3">
@@ -33,29 +52,16 @@ class DetailsPageComponent extends React.Component {
                 {/*     src={`https://image.tmdb.org/t/p/w200${this.props.media.posterPath}`}*/}
                 {/*     alt="Poster"/>*/}
                 {/*}*/}
-                <img className={"card-image-top"}
-                     src={god} alt="Poster" width={187} height={300}/>
+
               </div>
               <div className="col-md-9  details-page-options ">
                 <div className="row details-page-option">
                   <div className="col-md-11">
                     <h3>Description</h3>
-                    <small>
-                      The FitnessGram Pacer Test is a multistage aerobic
-                      capacity test that progressively
-                      gets more difficult as it continues. The 20 meter pacer
-                      test will begin in 30 seconds.
-                      Line up at the start. The running speed starts slowly but
-                      gets faster each minute
-                      after you hear this signal bodeboop. A sing lap should be
-                      completed every time you
-                      hear this sound. ding Remember to run in a straight line
-                      and run as long as possible.
-                      The second time you fail to complete a lap before the
-                      sound, your test is over. The
-                      test will begin on the word start. On your mark. Get
-                      ready!… Start.
-                    </small>
+                    <p>
+                      {this.state.movie.overview}
+                    </p>
+
                   </div>
                 </div>
                 <div className="row details-page-option">

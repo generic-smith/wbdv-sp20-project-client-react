@@ -131,7 +131,7 @@ class RegisterPageComponent extends React.Component {
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
                             <button type={"button"} className="btn btn-primary btn-block wbdv-login" id="registerBtn"
-                                    onClick={this.verifyAndSend}>Register?</button>
+                                    onClick={this.verifyAndSend}>Register</button>
                         </div>
                     </div>
                     <Link to="/login"> Login </Link>

@@ -52,7 +52,8 @@ class ViewerProfile extends React.Component {
                          <DetailsPageComponent
                              {...props}
                              history={props.history}
-                             media={props.media}
+
+
                          />
                      }
               />
