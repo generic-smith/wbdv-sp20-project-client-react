@@ -26,7 +26,7 @@ class WatchingGridComponent extends React.Component {
       if (prevProps.uid === -1 && this.props.uid !== -1) {
           this.setState({viewOnly: true}, () => this.props.findWatchlist(this.props.uid));
       }
-      else if (prevProps.uid !== this.props.uid && this.props.uid === -1) {
+      else if (this.props.uid === -1) {
           this.props.findWatchlist(this.props.user.id);
       }
 
