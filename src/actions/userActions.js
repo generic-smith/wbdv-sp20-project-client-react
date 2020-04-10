@@ -9,3 +9,8 @@ export const loginUser = (response) => ({
     type: LOGIN_USER,
     newUser: response
 })
+
+export const LOGOUT = "LOGOUT"
+export const logout = () => ({
+    type: LOGOUT
+})

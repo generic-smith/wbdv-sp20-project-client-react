@@ -1,9 +1,9 @@
-import {CREATE_USER, LOGIN_USER} from "../actions/userActions";
+import {CREATE_USER, LOGIN_USER, LOGOUT} from "../actions/userActions";
 
 const initialState = {
     registerSuccess: 3,
     user: {
-        username: "Guest", password: "Guest", id: 1
+        username: "", password: "", id: -1
     }
 }
 
@@ -12,6 +12,10 @@ const userReducer = (state = initialState, action) => {
         case CREATE_USER:
             return {
                 registerSuccess: action.success,
+                user: state.user
+            }
+        case LOGOUT:
+            return {
                 user: state.user
             }
         case LOGIN_USER:

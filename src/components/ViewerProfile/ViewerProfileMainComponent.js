@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 import {Provider} from "react-redux";
 import "../../../node_modules/font-awesome/css/font-awesome.css"
 import userService from "../../services/UserService"
-import {loginUser} from "../../actions/userActions";
+import {loginUser, logout} from "../../actions/userActions";
 
 
 class ViewerProfileMainComponent extends React.Component {
@@ -19,7 +19,15 @@ class ViewerProfileMainComponent extends React.Component {
 
   componentDidMount() {
           this.props.profileRetrieve();
-          return;
+          if (this.props.user.username === "" || this.props.user.id === -1) {
+              this.props.history.push("/login")
+          }
+
+  }
+
+  logout = () => {
+      this.props.logout();
+      this.props.history.push("/login");
   }
 
 
@@ -27,7 +35,9 @@ class ViewerProfileMainComponent extends React.Component {
     return (
 
           <div className="body">
-            <LogoBar username={this.props.user.username}/>
+            <LogoBar
+                logout={this.logout}
+                username={this.props.user.username}/>
 
             <div className="row mt-2">
               <div className="col-8 stretch-down">
@@ -64,6 +74,8 @@ const stateToPropertyMapper = (state) => ({
 });
 
 const dispatcherToPropertyMapper = (dispatch) => ({
+    logout: () =>
+        dispatch(logout()),
     profileRetrieve: () =>
         userService.profileRetrieve()
             .then(user => dispatch(loginUser(user)))
