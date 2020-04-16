@@ -52,11 +52,12 @@ class FollowListComponent extends React.Component {
                                       user={entry}
                                       addUser={this.addThisUser}/>)}
             </div>}
-            {this.props.user && this.props.user.followList && this.props.user.followList.length > 0 &&
+            {this.props.user && this.props.user.followList &&
             <div>
-                {this.props.user.followList.map(entry =>
-                    <FollowListItem user={entry}/>
-                )}
+                {Object.entries(this.props.user.followList).forEach(
+                    ([key, value]) => (console.log(key + " " + value))
+                )
+                }
             </div>}
         </div>
     )
