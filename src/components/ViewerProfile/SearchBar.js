@@ -28,16 +28,11 @@ class SearchBar extends React.Component {
   // so we probably will end up adding more stuff to it, if you want to see all the info thats given uncomment the line below
   pickForChosen = (json) => {
     let temp;
-    //{console.log(json)}
     if (this.state.searchType === "search-movies") {
-      temp = {
-        mediaId: json.id,
-        posterPath: json.poster_path,
-        title: json.title
-      };
+      temp = {type: "MOVIE", mediaId: json.id, description: json.overview, posterPath: json.poster_path, title: json.title};
       return temp;
     } else {
-      temp = {mediaId: json.id, posterPath: json.poster_path, title: json.name};
+      temp = {type: "TV", mediaId: json.id, description: json.overview, posterPath: json.poster_path, title: json.name};
       return temp;
     }
   };
@@ -107,7 +102,6 @@ class SearchBar extends React.Component {
                       value={this.state.searchType}>
                 <option value={"search-movies"}>Movies</option>
                 <option value={"search-tv"}>TV Shows</option>
-                <option value={"search-users"}>Users</option>
               </select>
 
 

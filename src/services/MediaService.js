@@ -15,7 +15,24 @@ export const addMedia = (uid, media) =>
     })
         .then(response => response.json());
 
+export const getMedia = (uid, mid) =>
+    fetch(`${url}/users/${uid}/watchlist/${mid}`)
+        .then(response => response.text()).then(text => text.length ? JSON.parse(text) : {});
+
+export const updateMedia = (uid, mid, media) =>
+    fetch(`${url}/users/${uid}/watchlist/${mid}`, {
+        method: "PUT",
+        body: JSON.stringify(media),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json());
+
+
 export default {
     findWatchlist,
-    addMedia
+    addMedia,
+    getMedia,
+    updateMedia
 }

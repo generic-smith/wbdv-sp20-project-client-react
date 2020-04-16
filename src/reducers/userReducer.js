@@ -3,7 +3,7 @@ import {CREATE_USER, LOGIN_USER, LOGOUT} from "../actions/userActions";
 const initialState = {
     registerSuccess: 3,
     user: {
-        username: "", password: "", id: -1
+        username: "Guest", password: "Guest", id: -1
     }
 }
 
@@ -21,7 +21,7 @@ const userReducer = (state = initialState, action) => {
         case LOGIN_USER:
             if (Object.keys(action.newUser).length === 0) {
                 return {
-                    user: state.user
+                    user: initialState.user
                 }
             }
             else {

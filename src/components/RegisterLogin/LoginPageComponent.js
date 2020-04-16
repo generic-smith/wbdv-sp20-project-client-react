@@ -46,7 +46,7 @@ class LoginPageComponent extends React.Component {
     };
 
     loginGuest = () => {
-        this.props.login({username: "Guest", password: "Guest"}).then(this.props.history.push("/home"));
+
     }
 
     state = {
@@ -101,7 +101,7 @@ class LoginPageComponent extends React.Component {
                         <label className="col-sm-2 col-form-label"></label>
                         <label className="col-sm-10" id="signUp">
                             <Link to="/register">Sign Up</Link>
-                            <Link class="float-right" onClick={() => this.loginGuest()}> Sign in as Guest</Link>
+                            <Link class="float-right" to={"/home"}> Sign in as Guest</Link>
                         </label>
 
                     </div>

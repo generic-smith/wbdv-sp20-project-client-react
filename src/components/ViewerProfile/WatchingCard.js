@@ -1,6 +1,9 @@
 import React from "react";
 import god from "./morgan_freeman_is_god.jpg"
 import {Link} from "react-router-dom";
+import {addMedia, findWatchlist} from "../../actions/mediaActions";
+import mediaService from "../../services/MediaService";
+import {connect, createDispatchHook} from "react-redux";
 class WatchingCard extends React.Component {
 
   openEditor = () => {
@@ -18,7 +21,9 @@ class WatchingCard extends React.Component {
             {this.props.media.posterPath != null &&
             <img onClick={this.openEditor} className={"card-image-top"}
                  src={`https://image.tmdb.org/t/p/w200${this.props.media.posterPath}`}
-                 alt="Poster"/>
+                 alt="Poster"
+                 width={187}
+                 height={300}/>
             }
             <div className={"card-body"}>
                 <Link to={`/home/details/${this.props.media.mediaId}`}>
@@ -34,5 +39,6 @@ class WatchingCard extends React.Component {
   }
 
 }
+
 
 export default WatchingCard

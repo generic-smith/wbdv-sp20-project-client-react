@@ -17,7 +17,7 @@ class WatchingGridComponent extends React.Component {
       if (this.props.uid !== -1) {
           this.setState({viewOnly: true}, () => this.props.findWatchlist(this.props.uid));
       }
-      else {
+      else if (this.props.user.id !== -1) {
           this.props.findWatchlist(this.props.user.id);
       }
   }
@@ -26,14 +26,14 @@ class WatchingGridComponent extends React.Component {
       if (prevProps.uid === -1 && this.props.uid !== -1) {
           this.setState({viewOnly: true}, () => this.props.findWatchlist(this.props.uid));
       }
-      else if (this.props.uid === -1) {
+      else if (this.props.uid === -1 && this.props.user.id !== prevProps.user.id) {
           this.props.findWatchlist(this.props.user.id);
       }
 
   }
 
     fixUp = (media) => {
-      if (this.props.user.id !== 11) {
+      if (this.props.user.id !== -1) {
           this.props.addMedia(this.props.user.id, media)
       }
       else {
@@ -45,7 +45,7 @@ class WatchingGridComponent extends React.Component {
     let that = this;
     return (
 
-        <div className="ml-3">
+        <div className="">
 
             {!this.state.viewOnly && <SearchBar
               addMedia={this.fixUp}
@@ -81,7 +81,7 @@ const dispatcherToPropertyMapper = (dispatch) => ({
     dispatch(addMedia(media)),
   addMedia: (uid, media) =>
       mediaService.addMedia(uid, media)
-      .then(response => dispatch(addMedia(media))),
+      .then(response => response === 0 ? console.log(response) : dispatch(addMedia(media))),
   findWatchlist: (uid) =>
       mediaService.findWatchlist(uid)
       .then(actualMedia => dispatch(findWatchlist(actualMedia)))

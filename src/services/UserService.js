@@ -36,9 +36,26 @@ export const logoutUser = () =>
     })
         .then(response => response.json());
 
+export const searchUsers = (userLookingFor, exceptMe) =>
+    fetch(`${url}/users/${userLookingFor}/${exceptMe}`)
+        .then(response => response.text()).then(text => text.length ? JSON.parse(text) : {});
+
+export const addUserToFollowList = (uid, user) =>
+    fetch(`${url}/users/${uid}/followlist`, {
+        method: "PUT",
+        body: JSON.stringify(user),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.text()).then(text => text.length ? JSON.parse(text) : {});
+
+
 export default {
     createUser,
     loginUser,
     profileRetrieve,
-    logoutUser
+    logoutUser,
+    searchUsers,
+    addUserToFollowList
 }

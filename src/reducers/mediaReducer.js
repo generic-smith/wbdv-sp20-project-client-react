@@ -7,12 +7,12 @@ const initialState = {
 const mediaReducer = (state = initialState, action) => {
     switch(action.type) {
         case ADD_MEDIA:
-            return {
-                media: [
-                    ...state.media,
-                    action.newMedia
-                ]
-            }
+                return {
+                    media: [
+                        ...state.media,
+                        action.newMedia
+                    ]
+                }
         case FIND_WATCHLIST:
             return {
                 media: action.media

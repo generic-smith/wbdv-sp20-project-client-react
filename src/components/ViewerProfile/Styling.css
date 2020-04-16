@@ -1,5 +1,11 @@
+.body {
+  overflow-x: hidden;
+}
 .stretch-down {
   min-height: 800px;
+}
+.stretch-down-2 {
+  min-height: 860px;
 }
 
 .logo {
@@ -94,6 +100,7 @@
   border-color: #A9A9A9;
   border-width: 2px;
   margin-top: 9px;
+  height: max-content;
 }
 
 .watch-grid {
