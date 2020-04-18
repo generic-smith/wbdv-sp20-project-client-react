@@ -92,11 +92,6 @@ class SearchBar extends React.Component {
 
 
 
-
-
-
-
-
           {!this.props.viewOnly && <i className="fa fa-2x fa-search d-none ml-auto d-md-block"/> }
           {!this.props.viewOnly && <select className="d-none d-md-block" id="search-media"
                       onChange={(e) => {
@@ -176,6 +171,8 @@ class SearchBar extends React.Component {
         </div>
     )
   }
+
+
 
 }
 

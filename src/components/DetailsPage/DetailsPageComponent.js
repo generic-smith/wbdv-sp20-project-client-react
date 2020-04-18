@@ -8,6 +8,11 @@ import mediaService from "../../services/MediaService"
 import {addMedia} from "../../actions/mediaActions";
 
 class DetailsPageComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    }
+
 
   componentDidMount() {
     const mediaId = this.props.match.params.mediaId;
@@ -156,7 +161,7 @@ class DetailsPageComponent extends React.Component {
                 </div>
                 <div className="row details-page-option">
                   <div className="col-md-2">
-                    <h3>Comments?</h3>
+                    <h3>Your Comments</h3>
                   </div>
 
                   <div className="col-2">

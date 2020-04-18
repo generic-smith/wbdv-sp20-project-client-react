@@ -178,3 +178,15 @@
 .remove-media:hover{
   background-color: darkred;
 }
+.add-to-watchlist{
+  size:10px;
+}
+.general-overview{
+  margin-top: 30px;
+}
+.company{
+  margin-top: 20px;
+}
+.languages{
+  margin-top: 20px;
+}
