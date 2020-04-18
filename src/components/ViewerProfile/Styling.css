@@ -35,9 +35,24 @@
   display: inline-block;
 }
 
+.long-input {
+
+  width: 40%;
+}
+
 .watchlist-text {
   padding-left: 15px;
   margin-top: 5px;
+}
+
+.dropdown-content-2 {
+  position: absolute;
+  background: black;
+  color: #ff9900;
+  overflow: hidden;
+  padding: 2px;
+  border: 1px solid #ddd;
+  z-index: 1;
 }
 
 .dropdown-content {

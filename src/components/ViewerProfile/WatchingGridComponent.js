@@ -45,11 +45,10 @@ class WatchingGridComponent extends React.Component {
         let that = this;
         return (
 
-            <div className="">
-
-                {!this.state.viewOnly && <SearchBar
-                    addMedia={this.fixUp}
-                />}
+            <div>
+               <SearchBar
+                    viewOnly={this.state.viewOnly}
+                    addMedia={this.fixUp}/>
                 <div className="watch-grid stretch-down row mt-2 pt-1">
 
                     {this.props.media.length > 0 && this.props.media.map((media) =>

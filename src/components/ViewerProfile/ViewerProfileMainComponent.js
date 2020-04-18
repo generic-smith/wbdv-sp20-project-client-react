@@ -40,6 +40,8 @@ class ViewerProfileMainComponent extends React.Component {
           <div className="body">
             <LogoBar
                 logout={this.logout}
+                uid={this.props.uid}
+                history={this.props.history}
                 username={this.props.user.username}/>
 
             <div className="row mt-2 ml-1 mr-1 mb-2">
