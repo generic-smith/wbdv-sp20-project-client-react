@@ -151,3 +151,15 @@
 .details-page-title {
   padding-top: 20px;
 }
+.card-image-top{
+  cursor: pointer;
+}
+.remove-media{
+  float: right;
+  font-size: 15px;
+  background-color: #008ae6;
+  color: white;
+}
+.remove-media:hover{
+  background-color: darkred;
+}

@@ -29,10 +29,16 @@ export const updateMedia = (uid, mid, media) =>
     })
         .then(response => response.json());
 
+export const removeFromWatchList = (uid, mid) =>
+    fetch(`${url2}/users/${uid}/watchlist/${mid}`,{
+    method: "DELETE"
+}).then(response => response.json());
+
 
 export default {
     findWatchlist,
     addMedia,
     getMedia,
-    updateMedia
+    updateMedia,
+    removeFromWatchList
 }

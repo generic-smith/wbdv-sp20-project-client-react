@@ -4,7 +4,11 @@ import {Link} from "react-router-dom";
 import {addMedia, findWatchlist} from "../../actions/mediaActions";
 import mediaService from "../../services/MediaService";
 import {connect, createDispatchHook} from "react-redux";
+import "../../../node_modules/font-awesome/css/font-awesome.css"
 class WatchingCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
   openEditor = () => {
     this.props.history.push(`home/details/${this.props.media.mediaId}`);
@@ -16,10 +20,10 @@ class WatchingCard extends React.Component {
           <div className="card">
             {this.props.media.posterPath == null &&
             <img className={"card-image-top"}
-                 src={god} alt="Poster" width={187} height={300}/>
+                 src={god} alt="Poster" width={187} height={300} onMouseOver=""/>
             }
             {this.props.media.posterPath != null &&
-            <img onClick={this.openEditor} className={"card-image-top"}
+            <img onClick={this.openEditor} className={"card-image-top"} onMouseOver=""
                  src={`https://image.tmdb.org/t/p/w200${this.props.media.posterPath}`}
                  alt="Poster"
                  width={187}
@@ -27,11 +31,13 @@ class WatchingCard extends React.Component {
             }
             <div className={"card-body"}>
                 <Link to={`/home/details/${this.props.media.mediaId}`}>
-              <i className={"card-text"}>
+              <a className={"card-text"}>
                   {this.props.media.title}
-
-              </i>
+              </a>
                 </Link>
+                <button type="button" className="remove-media"><i className="fa fa-trash remove-text"
+                           onClick={() =>
+                           {this.props.removeFromWatchlist(this.props.user.id, this.props.media.id);}}></i></button>
             </div>
           </div>
         </div>

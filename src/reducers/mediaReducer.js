@@ -1,4 +1,4 @@
-import {ADD_MEDIA, FIND_WATCHLIST} from "../actions/mediaActions";
+import {ADD_MEDIA, FIND_WATCHLIST, REMOVE_FROM_WATCHLIST} from "../actions/mediaActions";
 
 const initialState = {
     media: []
@@ -17,6 +17,12 @@ const mediaReducer = (state = initialState, action) => {
             return {
                 media: action.media
             }
+        case REMOVE_FROM_WATCHLIST:
+            return{
+                media: state.media.filter(m => m.id !== action.mid)
+            }
+
+
         default:
             return state
     }

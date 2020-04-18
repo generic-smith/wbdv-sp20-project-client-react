@@ -9,3 +9,9 @@ export const findWatchlist = (media) => ({
     type: FIND_WATCHLIST,
     media: media
 })
+
+export const REMOVE_FROM_WATCHLIST ="REMOVE_FROM_WATCHLIST"
+export const removeFromWatchlist = (uid, mid)=> ({
+    type: REMOVE_FROM_WATCHLIST,
+    mid: mid
+})
