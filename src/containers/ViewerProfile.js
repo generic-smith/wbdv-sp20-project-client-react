@@ -9,8 +9,8 @@ import {Provider} from "react-redux";
 import {combineReducers, createStore} from "redux";
 import userReducer from "../reducers/userReducer";
 import mediaReducer from "../reducers/mediaReducer";
-import DetailsPageComponent
-  from "../components/DetailsPage/DetailsPageComponent";
+import DetailsPageComponent from "../components/DetailsPage/DetailsPageComponent";
+import GeneralDetailsPageComponent from "../components/DetailsPage/GeneralDetailsPageComponent";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -60,11 +60,21 @@ class ViewerProfile extends React.Component {
                          <DetailsPageComponent
                              {...props}
                              history={props.history}
-
+                             mediaId={props.match.params.mediaId}
 
                          />
                      }
               />
+              <Route path="/home/generaldetails/:searchType/:mediaId"
+                     exact={true}
+                     render={(props) =>
+                         <GeneralDetailsPageComponent
+                             {...props}
+                             history={props.history}
+                             searchType={props.match.params.searchType}
+                             mediaId={props.match.params.mediaId}/>
+                     }
+            />
             </Router>
           </Provider>
         </div>
