@@ -22,7 +22,7 @@ class LogoBar extends React.Component {
 
           <div className="text-right align-middle ml-2">
               <div className="row float-right mr-1">
-                  <h5 className="text-center mr-2 d-none d-sm-block"> Logged in as {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)} </h5>
+                  <h5 className="text-center mr-2 d-none d-sm-block"> Logged in as {this.props.username} </h5>
                   {/*{this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)} </h5>*/}
 
                   <button type="button" onClick={this.props.logout} className="btn btn-light profile d-none d-md-block">Log Out</button>
