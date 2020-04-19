@@ -67,6 +67,7 @@ class DetailsPageComponent extends React.Component {
   }
 
   render() {
+    document.body.style.background="#A9A9A9"
     return (
         <div className="details-page body d-flex pt-2">
           <div className="mt-2 col-1">
@@ -236,6 +237,8 @@ class DetailsPageComponent extends React.Component {
             </div>
 
           <div className="col-1"/>
+
+
 
 
         </div>

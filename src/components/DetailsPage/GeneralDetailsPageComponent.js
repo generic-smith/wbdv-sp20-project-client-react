@@ -33,6 +33,7 @@ class GeneralDetailsPageComponent extends React.Component {
 
 
     render() {
+        document.body.style.background="#A9A9A9"
         return (
             <div className={"body stretch-down d-flex pt-2"}>
                 <div className="col-1 mt-2">
