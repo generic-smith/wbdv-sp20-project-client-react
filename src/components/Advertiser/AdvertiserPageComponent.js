@@ -4,20 +4,22 @@ import MediaService, {getAdvertData} from "../../services/MediaService";
 class AdvertiserPageComponent extends React.Component {
 
   state = {
-    media:{}
+    mediae:[]
   };
 
+  componentDidMount() {
+    this.setState({mediae: getAdvertData()});
+  }
 
-  mediaList = getAdvertData;
 
   render() {
-    console.log(this.mediaList)
+    console.log(this.state.mediae)
     return(
         <div>
           <div>
           <ul>
-            {this.media.length > 0 &&
-            this.mediaList.map((media) =>
+            {this.state.mediae.length > 0 &&
+            this.state.mediae.map((media) =>
               <li>{media.title} {media.count}</li>
             )
 
