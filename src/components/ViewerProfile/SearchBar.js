@@ -132,6 +132,7 @@ class SearchBar extends React.Component {
               {this.state.media.map(entry =>
                   <SearchItem class="search-item"
                               media={entry}
+                              searchType={this.state.searchType}
                               addThisId={this.addThisId}/>)}
             </div>}
           </Dropdown> }
@@ -160,6 +161,7 @@ class SearchBar extends React.Component {
                   {this.state.media.map(entry =>
                       <SearchItem class="search-item"
                           media={entry}
+                          searchType={this.state.searchType}
                           addThisId={this.addThisId}/>)}
                 </div>}
               </Dropdown>}

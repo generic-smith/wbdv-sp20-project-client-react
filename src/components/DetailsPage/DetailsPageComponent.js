@@ -10,7 +10,6 @@ import {addMedia} from "../../actions/mediaActions";
 class DetailsPageComponent extends React.Component {
   constructor(props) {
     super(props);
-
     }
 
 
@@ -64,16 +63,13 @@ class DetailsPageComponent extends React.Component {
 
   render() {
     return (
-        <div className="details-page body stretch-down">
-          {/*<LogoBar username={this.props.username}/>*/}
-          <div className="container">
-            <div className="row">
-              <div className="col-md-2">
-                <button className="btn btn-danger" onClick={this.goBack}>Back
-                </button>
-              </div>
-            </div>
-            <div className="container row details-page-details stretch-down">
+        <div className="details-page body d-flex pt-2">
+          <div className="mt-2 col-1">
+            <button className="btn btn-danger" onClick={this.goBack}>Back
+            </button>
+          </div>
+
+            <div className="col-10 details-page-details mt-2 mb-2">
               <div className="details-page-title"><h2>{this.state.movie.title}</h2>
                 <img className={"card-image-top"}
                      src={`https://image.tmdb.org/t/p/w200${this.state.movie.posterPath}`} alt="Poster" width={187} height={300}/>
@@ -159,7 +155,7 @@ class DetailsPageComponent extends React.Component {
                     </select>
                   </div>
                 </div>
-                <div className="row details-page-option">
+                <div className="row details-page-option mb-3">
                   <div className="col-md-2">
                     <h3>Your Comments</h3>
                   </div>
@@ -177,9 +173,12 @@ class DetailsPageComponent extends React.Component {
                 </div>
               </div>
             </div>
-          </div>
+
+          <div className="col-1"/>
+
 
         </div>
+
     );
   }
 

@@ -34,16 +34,15 @@ class GeneralDetailsPageComponent extends React.Component {
 
     render() {
         return (
-            <div className={"body stretch-down"}>
-                <div className="container">
+            <div className={"body stretch-down d-flex pt-2"}>
+                <div className="col-1 mt-2">
+                    <button className="btn btn-danger" onClick={this.goBack}>Back
+                    </button>
+
+                </div>
+                <div className="container col-10 mt-2 mb-2">
                     <div className="row">
-                        <div className="col-md-2">
-                            <button className="btn btn-danger" onClick={this.goBack}>Back
-                            </button>
 
-                        </div>
-
-                        <br/>
                         <div className={"container details-page-details stretch-down "}>
                             {this.state.searchType === "search-movies" &&
                             <h2 className={"details-page-title"}>{this.state.movie.title}</h2>
@@ -110,6 +109,7 @@ class GeneralDetailsPageComponent extends React.Component {
                         </div>
                     </div>
                 </div>
+                <div className="col-1"/>
 
 
             </div>

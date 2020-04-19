@@ -6,7 +6,7 @@ class SearchItem extends React.Component {
   render() {
     return (
         <div className={"d-flex mt-1 mb-2"}>
-            <Link to={`/home/details/${this.props.media.mediaId}`}>
+            <Link to={`/home/generaldetails/${this.props.searchType}/${this.props.media.mediaId}`}>
           <div className="pl-2 pt-2 pb-2 pr-4" style={{color: "#ff9900"}}>{this.props.media.title}</div>
             </Link>
           <button onClick={() => this.props.addThisId(this.props.media.mediaId)}

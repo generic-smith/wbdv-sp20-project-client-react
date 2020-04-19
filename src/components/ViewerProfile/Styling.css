@@ -1,3 +1,4 @@
+
 .body {
   overflow-x: hidden;
 }
@@ -15,6 +16,7 @@
 .negative-margin {
   margin-right: -15px;
 }
+
 
 .login {
   margin-right: 10px;
@@ -127,10 +129,19 @@
 
 }
 
+.text-center {
+  margin-left: auto;
+  margin-right: auto;
+}
 .card-text {
   color: black;
 }
 
+.our-card-body {
+  padding-left: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
 .card {
   width: 11.8rem;
   background-color: red;
@@ -140,6 +151,7 @@
 .details-page h3 {
   margin: 0 !important;
 }
+
 
 .details-page h2 {
   margin: 0 !important;
@@ -154,7 +166,6 @@
   border-style: solid;
   border-color: #A9A9A9;
   border-width: 2px;
-  box-sizing: border-box;
 }
 
 .details-page-poster {
@@ -189,4 +200,9 @@
 }
 .languages{
   margin-top: 20px;
+}
+.back-button {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: -38px;
 }

@@ -17,7 +17,7 @@ class WatchingCard extends React.Component {
   render() {
     return (
         <div className="watching-card col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-          <div className="card">
+          <div className="card ml-auto mr-auto">
             {this.props.media.posterPath == null &&
             <img className={"card-image-top"}
                  src={god} alt="Poster" width={187} height={300} onMouseOver=""/>
@@ -29,18 +29,28 @@ class WatchingCard extends React.Component {
                  width={187}
                  height={300}/>
             }
-            <div className={"card-body"}>
+            <div className="d-flex p-1">
+            <div className="our-card-body text-truncate">
+                {!this.props.viewOnly &&
                 <Link to={`/home/details/${this.props.media.mediaId}`}>
-              <a className={"card-text"}>
-                  {this.props.media.title}
-              </a>
-                </Link>
-                <button type="button" className="remove-media"><i className="fa fa-trash remove-text"
-                           onClick={() =>
-                           {this.props.removeFromWatchlist(this.props.user.id, this.props.media.id);}}></i></button>
+              <a data-toggle="tooltip" title={this.props.media.title} className={"card-text"}>{this.props.media.title}</a>
+                </Link>}
+
+                {this.props.viewOnly &&
+                <Link to={`/home/details/${this.props.media.mediaId}`}>
+                    <a className={"card-text"}>{this.props.media.title}</a>
+                </Link>}
+            </div>
+
+                {!this.props.viewOnly &&
+                <button type="button" className="btn remove-media ml-auto">
+                    <i className="fa fa-trash remove-text"
+                       onClick={() => {
+                           this.props.removeFromWatchlist(this.props.user.id, this.props.media.id);}}/></button>}
             </div>
           </div>
-        </div>
+          </div>
+
     )
   }
 

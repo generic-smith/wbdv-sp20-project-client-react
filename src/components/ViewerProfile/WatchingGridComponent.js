@@ -53,6 +53,7 @@ class WatchingGridComponent extends React.Component {
 
                     {this.props.media.length > 0 && this.props.media.map((media) =>
                         <WatchingCard
+                            viewOnly={this.state.viewOnly}
                             history={that.props.history}
                             media={media}
                             removeFromWatchlist={this.props.removeFromWatchlist}
