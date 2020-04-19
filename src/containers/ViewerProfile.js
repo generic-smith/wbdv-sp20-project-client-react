@@ -1,7 +1,7 @@
 import React from "react";
 import ViewerProfileMainComponent
   from "../components/ViewerProfile/ViewerProfileMainComponent";
-import {BrowserRouter as Router, Link, Redirect, Route} from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import RegisterPageComponent
   from "../components/RegisterLogin/RegisterPageComponent";
 import LoginPageComponent from "../components/RegisterLogin/LoginPageComponent";
@@ -9,8 +9,12 @@ import {Provider} from "react-redux";
 import {combineReducers, createStore} from "redux";
 import userReducer from "../reducers/userReducer";
 import mediaReducer from "../reducers/mediaReducer";
-import DetailsPageComponent from "../components/DetailsPage/DetailsPageComponent";
-import GeneralDetailsPageComponent from "../components/DetailsPage/GeneralDetailsPageComponent";
+import DetailsPageComponent
+  from "../components/DetailsPage/DetailsPageComponent";
+import GeneralDetailsPageComponent
+  from "../components/DetailsPage/GeneralDetailsPageComponent";
+import AdvertiserPageComponent
+  from "../components/Advertiser/AdvertiserPageComponent";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -61,23 +65,15 @@ class ViewerProfile extends React.Component {
                              {...props}
                              history={props.history}
                              mediaId={props.match.params.mediaId}
-                             viewOnly={false}
-
-                         />
-                     }
-              />
-                <Route path="/user/:uid/watchlist/:mediaId" exact={true}
-                       render={(props) =>
-                           <DetailsPageComponent
-                               {...props}
-                               history={props.history}
-                               uid={props.match.params.uid}
-                               mediaId={props.match.params.mediaId}
-                               viewOnly={true}
-
-                           />
-                       }
-                />
+                             viewOnly={false}/>}/>
+              <Route path="/user/:uid/watchlist/:mediaId" exact={true}
+                     render={(props) =>
+                         <DetailsPageComponent
+                             {...props}
+                             history={props.history}
+                             uid={props.match.params.uid}
+                             mediaId={props.match.params.mediaId}
+                             viewOnly={true}/>}/>
               <Route path="/home/generaldetails/:searchType/:mediaId"
                      exact={true}
                      render={(props) =>
@@ -85,9 +81,11 @@ class ViewerProfile extends React.Component {
                              {...props}
                              history={props.history}
                              searchType={props.match.params.searchType}
-                             mediaId={props.match.params.mediaId}/>
-                     }
-            />
+                             mediaId={props.match.params.mediaId}/>}/>
+              <Route path="/advertiser"
+                     exact={true}
+                     render={(props) => <AdvertiserPageComponent/>}/>
+
             </Router>
           </Provider>
         </div>
