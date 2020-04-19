@@ -61,10 +61,23 @@ class ViewerProfile extends React.Component {
                              {...props}
                              history={props.history}
                              mediaId={props.match.params.mediaId}
+                             viewOnly={false}
 
                          />
                      }
               />
+                <Route path="/user/:uid/watchlist/:mediaId" exact={true}
+                       render={(props) =>
+                           <DetailsPageComponent
+                               {...props}
+                               history={props.history}
+                               uid={props.match.params.uid}
+                               mediaId={props.match.params.mediaId}
+                               viewOnly={true}
+
+                           />
+                       }
+                />
               <Route path="/home/generaldetails/:searchType/:mediaId"
                      exact={true}
                      render={(props) =>

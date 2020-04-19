@@ -29,6 +29,8 @@ class WatchingGridComponent extends React.Component {
             this.setState({viewOnly: true}, () => this.props.findWatchlist(this.props.uid));
         } else if (this.props.uid === -1 && this.props.user.id !== prevProps.user.id) {
             this.props.findWatchlist(this.props.user.id);
+        } else if (this.props.uid !== -1 && prevProps.uid !== this.props.uid) {
+            this.props.findWatchlist(this.props.uid);
         }
 
     }
@@ -55,6 +57,7 @@ class WatchingGridComponent extends React.Component {
                         <WatchingCard
                             viewOnly={this.state.viewOnly}
                             history={that.props.history}
+                            uid={that.props.uid}
                             media={media}
                             removeFromWatchlist={this.props.removeFromWatchlist}
                             user={this.props.user}

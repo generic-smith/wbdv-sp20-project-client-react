@@ -9,7 +9,7 @@ class LogoBar extends React.Component {
         <div className="d-flex">
 
 
-              {this.props.uid !== 1 && <button className="ml-3 mt-2 mr-2 btn btn-danger" onClick={() => this.props.history.goBack}>Back
+              {this.props.uid !== 1 && <button className="ml-3 mt-2 mr-2 btn btn-danger" onClick={() => this.props.history.goBack()}>Back
               </button>
 
              }

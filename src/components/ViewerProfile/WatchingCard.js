@@ -37,7 +37,7 @@ class WatchingCard extends React.Component {
                 </Link>}
 
                 {this.props.viewOnly &&
-                <Link to={`/home/details/${this.props.media.mediaId}`}>
+                <Link to={`/user/${this.props.uid}/watchlist/${this.props.media.mediaId}`}>
                     <a className={"card-text"}>{this.props.media.title}</a>
                 </Link>}
             </div>

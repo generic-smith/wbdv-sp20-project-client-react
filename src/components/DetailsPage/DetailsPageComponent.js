@@ -19,7 +19,12 @@ class DetailsPageComponent extends React.Component {
   }
 
   putInWork(uid, mid) {
-    this.props.getMediaInfoForMe(uid, mid).then(e => this.setState({movie: e}, () => this.dynamicDispatch()))
+    if (this.props.viewOnly) {
+      this.props.getMediaInfoForMe(this.props.uid, mid).then(e => this.setState({movie: e}, () => this.dynamicDispatch()))
+    }
+    else {
+      this.props.getMediaInfoForMe(uid, mid).then(e => this.setState({movie: e}, () => this.dynamicDispatch()))
+    }
   }
 
   dynamicDispatch() {
@@ -93,6 +98,7 @@ class DetailsPageComponent extends React.Component {
                     <h3>Movie Status</h3>
                   </div>
                   <div className="col-md-3 dropdown">
+                    {!this.props.viewOnly &&
                     <select value={this.state.movie.watched} onChange={e => {
                       const seen = e.target.value;
                       let ns = {movie: {...this.state.movie, watched: seen}};
@@ -100,7 +106,16 @@ class DetailsPageComponent extends React.Component {
                     }} class="form-control">
                       <option value={true}>Have Seen</option>
                       <option value={false}>Want to see</option>
-                    </select>
+                    </select>}
+                    {this.props.viewOnly &&
+                    <select value={this.state.movie.watched} onChange={e => {
+                      const seen = e.target.value;
+                      let ns = {movie: {...this.state.movie, watched: seen}};
+                      this.setState(ns, () => this.props.updateMedia(this.props.user.id, this.state.movie.mediaId, this.state.movie, this))
+                    }} class="form-control" disabled={true}>
+                      <option value={true}>Have Seen</option>
+                      <option value={false}>Want to see</option>
+                    </select>}
                   </div>
                 </div>}
                 {this.state.movie.type === "TV" &&
@@ -111,6 +126,7 @@ class DetailsPageComponent extends React.Component {
                   </div>
                   <div className="col-md-3 dropdown">
                     <label>Season</label>
+                    {!this.props.viewOnly &&
                     <select value={this.state.movie.season} onChange={e => {
                       const season = parseInt(e.target.value);
                       let ns = {movie: {...this.state.movie, season: season}};
@@ -119,10 +135,21 @@ class DetailsPageComponent extends React.Component {
                       {Array.from(Array(this.state.seasons), (e, i) => {
                         return <option value={i + 1}>Season {i + 1}</option>
                       })}
-                    </select>
+                    </select>}
+                    {this.props.viewOnly &&
+                    <select value={this.state.movie.season} onChange={e => {
+                      const season = parseInt(e.target.value);
+                      let ns = {movie: {...this.state.movie, season: season}};
+                      this.setState(ns, () => this.props.updateMedia(this.props.user.id, this.state.movie.mediaId, this.state.movie, this).then(() =>this.updateEpisodes()))
+                    }} className="form-control" disabled={true}>
+                      {Array.from(Array(this.state.seasons), (e, i) => {
+                        return <option value={i + 1}>Season {i + 1}</option>
+                      })}
+                    </select>}
                   </div>
                   <div className="col-md-3 dropdown">
                     <label>Episode</label>
+                    {!this.props.viewOnly &&
                     <select value={this.state.movie.episode} onChange={e => {
                       const episode = parseInt(e.target.value);
                       let ns = {movie: {...this.state.movie, episode: episode}};
@@ -131,7 +158,18 @@ class DetailsPageComponent extends React.Component {
                       {Array.from(Array(this.state.episodes), (e, i) => {
                         return <option value={i + 1}>Episode {i + 1}</option>
                       })}
-                    </select>
+                    </select>}
+                    {this.props.viewOnly &&
+                    <select value={this.state.movie.episode} onChange={e => {
+                      const episode = parseInt(e.target.value);
+                      let ns = {movie: {...this.state.movie, episode: episode}};
+                      this.setState(ns, () => this.props.updateMedia(this.props.user.id, this.state.movie.mediaId, this.state.movie, this))
+                    }} className="form-control" disabled={true}>
+                      {Array.from(Array(this.state.episodes), (e, i) => {
+                        return <option value={i + 1}>Episode {i + 1}</option>
+                      })}
+                    </select>}
+
                   </div>
                 </div>
                 }
@@ -140,6 +178,7 @@ class DetailsPageComponent extends React.Component {
                     <h3>Rating</h3>
                   </div>
                   <div className="col-md-3 dropdown">
+                    {!this.props.viewOnly &&
                     <select value={this.state.movie.rating} onChange={e => {
                       const rating = parseInt(e.target.value);
                       let ns = {movie: {...this.state.movie, rating: rating}};
@@ -152,7 +191,21 @@ class DetailsPageComponent extends React.Component {
                       <option value={2}>Very Good</option>
                       {this.state.movie.type === "MOVIE" && <option value={3}>Best Movie Ever</option>}
                       {this.state.movie.type === "TV" && <option value={3}>Best Show Ever</option>}
-                    </select>
+                    </select>}
+                    {this.props.viewOnly &&
+                    <select value={this.state.movie.rating} onChange={e => {
+                      const rating = parseInt(e.target.value);
+                      let ns = {movie: {...this.state.movie, rating: rating}};
+                      this.setState(ns, () => this.props.updateMedia(this.props.user.id, this.state.movie.mediaId, this.state.movie, this))
+                    }} defaultValue={0} className="form-control" disabled={true}>
+                      <option value={-2}>Very Bad</option>
+                      <option value={-1}>Bad</option>
+                      <option value={0}>Meh</option>
+                      <option value={1}>Good</option>
+                      <option value={2}>Very Good</option>
+                      {this.state.movie.type === "MOVIE" && <option value={3}>Best Movie Ever</option>}
+                      {this.state.movie.type === "TV" && <option value={3}>Best Show Ever</option>}
+                    </select>}
                   </div>
                 </div>
                 <div className="row details-page-option mb-3">
@@ -164,11 +217,19 @@ class DetailsPageComponent extends React.Component {
 
                   </div>
                   <div className="col">
+
+                    {!this.props.viewOnly &&
                     <textarea value={this.state.movie.comments} onChange={e => {
                       const seen = e.target.value;
                       let ns = {movie: {...this.state.movie, comments: seen}};
                       this.setState(ns, () => this.props.updateMedia(this.props.user.id, this.state.movie.mediaId, this.state.movie, this))
-                    }}className="form-control" rows="5" id="comment"/>
+                    }}className="form-control" rows="5" id="comment"/>}
+                    {this.props.viewOnly &&
+                    <textarea value={this.state.movie.comments} onChange={e => {
+                      const seen = e.target.value;
+                      let ns = {movie: {...this.state.movie, comments: seen}};
+                      this.setState(ns, () => this.props.updateMedia(this.props.user.id, this.state.movie.mediaId, this.state.movie, this))
+                    }}className="form-control" disabled={true} rows="5" id="comment"/>}
                   </div>
                 </div>
               </div>

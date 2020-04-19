@@ -1,6 +1,7 @@
 
 .body {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 .stretch-down {
   min-height: 800px;
