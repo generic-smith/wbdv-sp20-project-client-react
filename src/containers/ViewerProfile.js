@@ -100,7 +100,6 @@ class ViewerProfile extends React.Component {
                            history={props.history}/>
                    }
                        />
-                             mediaId={props.match.params.mediaId}/>}/>
               <Route path="/advertiser"
                      exact={true}
                      render={(props) => <AdvertiserPageComponent/>}/>
