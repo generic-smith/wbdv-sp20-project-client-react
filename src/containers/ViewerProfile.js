@@ -13,10 +13,6 @@ import DetailsPageComponent from "../components/DetailsPage/DetailsPageComponent
 import GeneralDetailsPageComponent from "../components/DetailsPage/GeneralDetailsPageComponent";
 import AdminPageComponent from "../components/AdminPage/AdminPageComponent";
 import ProfileComponent from "../components/ViewerProfile/ProfileComponent";
-import DetailsPageComponent
-  from "../components/DetailsPage/DetailsPageComponent";
-import GeneralDetailsPageComponent
-  from "../components/DetailsPage/GeneralDetailsPageComponent";
 import AdvertiserPageComponent
   from "../components/Advertiser/AdvertiserPageComponent";
 
