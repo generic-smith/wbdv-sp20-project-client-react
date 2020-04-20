@@ -1,10 +1,19 @@
-import {CREATE_USER, LOGIN_USER, LOGOUT} from "../actions/userActions";
+import {
+    CREATE_USER,
+    DELETE_USER,
+    FIND_ALL_USERS,
+    FIND_USER_BY_USERNAME,
+    LOGIN_USER,
+    LOGOUT,
+    UPDATE_USER
+} from "../actions/userActions";
 
 const initialState = {
     registerSuccess: 3,
     user: {
         username: "Guest", password: "Guest", id: -1
-    }
+    },
+    users:[]
 }
 
 const userReducer = (state = initialState, action) => {
@@ -29,6 +38,23 @@ const userReducer = (state = initialState, action) => {
                     user: action.newUser
                 }
             }
+        case FIND_ALL_USERS:
+            return{
+                users: action.users
+            }
+        case UPDATE_USER:
+            return{
+                users: state.users.map(user => user.id === action.newUser.id ? action.newUser : user)
+            }
+        case DELETE_USER:
+            return{
+                users: state.users.filter(user => user.id !== action.user.id)
+            }
+        case FIND_USER_BY_USERNAME:
+            return{
+                users: action.user
+            }
+
         default:
             return state
     }

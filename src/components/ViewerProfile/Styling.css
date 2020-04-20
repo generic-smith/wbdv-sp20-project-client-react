@@ -209,3 +209,58 @@
   margin-left: 20px;
   margin-bottom: -38px;
 }
+.admin-head{
+  margin-top: 20px;
+}
+.username{
+  display: inline-block;
+}
+.password{
+  display: inline-block;
+
+
+}
+.usertype{
+  display: inline-block;
+}
+.edit-user{
+  display: inline-block;
+}
+.delete-user{
+  display: inline-block;
+  margin-left: 6px;
+}
+.save-user{
+  display: inline-block;
+  margin-left: 20px;
+}
+.user-info{
+  display: inline-block;
+}
+.change-username{
+  display: inline-block;
+}
+.change-password{
+  display: inline-block;
+  margin-left: 170px;
+}
+.change-type{
+  margin-left: 170px;
+}
+.single-user:hover{
+  background-color: #DCDCDC;
+}
+.search{
+  margin-left: 15px;
+}
+.search-user{
+  margin-left: 10px;
+}
+.admin-title{
+  display: inline-block;
+}
+.log-out{
+  display: inline-block;
+  float: right;
+    margin-top: 10px;
+}

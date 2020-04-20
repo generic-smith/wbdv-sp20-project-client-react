@@ -1,6 +1,13 @@
 const url = 'https://wbdv-media-app-server.herokuapp.com/api';
 const url2 = 'http://localhost:8080/api'
 
+export const findAllUsers = async () =>{
+    const response = await fetch(`${url}/users`)
+    return await response.json()
+}
+
+
+
 export const createUser = (user) =>
     fetch(`${url}/users`, {
         method: "POST",
@@ -10,6 +17,19 @@ export const createUser = (user) =>
         }
     })
         .then(response => response.json());
+
+export const deleteUser = async(uid) => {
+    const response = await fetch(`${url}/users/${uid}`, {
+        method: "DELETE"
+    })
+    return response.json();
+}
+
+export const findUserByUsername  = async (username)=>{
+    return fetch(`${url}/users/${username}`)
+        .then(response => response.json())
+}
+
 
 export const loginUser = (user) =>
     fetch(`${url}/user-login`, {
@@ -50,6 +70,17 @@ export const addUserToFollowList = (uid, user) =>
     })
         .then(response => response.text()).then(text => text.length ? JSON.parse(text) : {});
 
+export const updateUser = async (uid, user) => {
+    const response = await fetch(`${url}/users/${uid}`, {
+        method: "PUT",
+        body: JSON.stringify(user),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+    return response.json()
+}
+
 
 export default {
     createUser,
@@ -57,5 +88,9 @@ export default {
     profileRetrieve,
     logoutUser,
     searchUsers,
-    addUserToFollowList
+    addUserToFollowList,
+    findAllUsers,
+    updateUser,
+    deleteUser,
+    findUserByUsername
 }

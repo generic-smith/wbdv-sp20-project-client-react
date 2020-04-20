@@ -11,13 +11,17 @@ import userReducer from "../reducers/userReducer";
 import mediaReducer from "../reducers/mediaReducer";
 import DetailsPageComponent from "../components/DetailsPage/DetailsPageComponent";
 import GeneralDetailsPageComponent from "../components/DetailsPage/GeneralDetailsPageComponent";
+import AdminPageComponent from "../components/AdminPage/AdminPageComponent";
+import ProfileComponent from "../components/ViewerProfile/ProfileComponent";
 
 const rootReducer = combineReducers({
   user: userReducer,
   media: mediaReducer
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 class ViewerProfile extends React.Component {
 
@@ -88,6 +92,22 @@ class ViewerProfile extends React.Component {
                              mediaId={props.match.params.mediaId}/>
                      }
             />
+            <Route path="/admin"
+                   exact={true}
+                   render={(props) =>
+                       <AdminPageComponent
+                           {...props}
+                           history={props.history}/>
+                   }
+                   />
+                   <Route path="/profile"
+                          exact={true}
+                          render={(props) =>
+                       <ProfileComponent
+                           {...props}
+                           history={props.history}/>
+                   }
+                       />
             </Router>
           </Provider>
         </div>

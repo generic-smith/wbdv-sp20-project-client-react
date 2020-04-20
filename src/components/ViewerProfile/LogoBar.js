@@ -4,6 +4,10 @@ import {Link} from "react-router-dom";
 
 class LogoBar extends React.Component {
 
+  toProfile=()=>{
+      this.props.history.push(`/profile`)
+  }
+
   render() {
     return (
         <div className="d-flex">
@@ -27,7 +31,7 @@ class LogoBar extends React.Component {
                   {/*{this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)} </h5>*/}
 
                   <button type="button" onClick={this.props.logout} className="btn btn-light profile d-none d-md-block">Log Out</button>
-                    <button type="button" className="btn btn-light profile d-none d-md-block">Profile</button>
+                    <button type="button" onClick={() => this.toProfile()} className="btn btn-light profile d-none d-md-block">Profile</button>
               </div>
           </div>
 

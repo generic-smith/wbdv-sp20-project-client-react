@@ -14,3 +14,28 @@ export const LOGOUT = "LOGOUT"
 export const logout = () => ({
     type: LOGOUT
 })
+
+export const FIND_ALL_USERS ="FIND_ALL_USERS"
+export const findAllUsers = (users) => ({
+    type: FIND_ALL_USERS,
+    users: users
+})
+
+export const UPDATE_USER ="UPDATE_USER"
+export const updateUser = (user) => ({
+    type: UPDATE_USER,
+    newUser: user
+})
+
+export const DELETE_USER ="DELETE_USER"
+export const deleteUser = (user) =>({
+    type: DELETE_USER,
+    user: user
+
+})
+
+export const FIND_USER_BY_USERNAME="FIND_USER_BY_USERNAME"
+export const findUserByUsername=(user) => ({
+    type: FIND_USER_BY_USERNAME,
+    user: user
+})
