@@ -31,7 +31,7 @@ class LogoBar extends React.Component {
 
                   <button type="button" onClick={this.props.logout} className="btn btn-light profile d-none d-md-block">Log Out</button>
 
-                  {this.props.user.id !== -1 &&  <button type="button" onClick={() => this.toProfile()} className="btn btn-light profile d-none d-md-block">Profile</button>}
+                  {this.props.userId !== -1 &&  <button type="button" onClick={() => this.toProfile()} className="btn btn-light profile d-none d-md-block">Profile</button>}
               </div>
           </div>
 
