@@ -1,5 +1,6 @@
 import React from "react";
 import "./Styling.css";
+import Logo from "../../logo.png"
 import {Link} from "react-router-dom";
 
 class LogoBar extends React.Component {
@@ -29,8 +30,7 @@ class LogoBar extends React.Component {
 
 
             <h2 className="text-center">
-              LogoPlaceholder
-              <i className={"logo fa fa-video-camera"}/>
+                The Watchlist
             </h2>
 
           <div className="text-right align-middle ml-2">

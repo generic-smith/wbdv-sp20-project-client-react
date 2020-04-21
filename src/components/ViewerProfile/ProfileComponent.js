@@ -55,9 +55,11 @@ class ProfileComponent extends React.Component {
         return (
             <div className={"container"}>
 
-                <h1><b>Profile</b></h1>
-                <button className="btn btn-danger" onClick={this.goBack}>Back
+                <div className={"d-flex"}>
+                <button className="btn btn-danger mt-2 mb-2 mr-2" onClick={this.goBack}><i className="fa fa-arrow-left"></i>
                 </button>
+                <h1><b>Profile</b></h1>
+                </div>
             <hr/>
                 <div className={"form-group"}>
                     <div className={"profile-username form-inline"}>
