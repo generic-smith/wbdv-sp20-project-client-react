@@ -264,3 +264,37 @@
   float: right;
     margin-top: 10px;
 }
+.profile-username{
+ margin-top: 30px;
+}
+.form-username{
+  display: inline-block;
+  margin-left: 100px;
+}
+.profile-password{
+  margin-top: 50px;
+}
+.form-password{
+  margin-left: 105px;
+}
+.profile-confirmed-password{
+  margin-top: 50px;
+}
+.form-confirmed{
+  margin-left: 50px;
+}
+.profile-type{
+  margin-top: 50px;
+}
+.form-type{
+  margin-left: 103px;
+}
+.profile-update{
+  margin-top: 70px;
+}
+.profile-cancel{
+  margin-top: 100px;
+}
+.match-alert{
+  margin-left: 40px;
+}

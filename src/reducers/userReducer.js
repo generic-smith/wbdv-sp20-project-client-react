@@ -52,7 +52,7 @@ const userReducer = (state = initialState, action) => {
             }
         case FIND_USER_BY_USERNAME:
             return{
-                users: action.user
+                users: [action.user]
             }
 
         default:

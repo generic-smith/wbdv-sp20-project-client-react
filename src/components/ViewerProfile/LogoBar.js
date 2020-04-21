@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 class LogoBar extends React.Component {
 
   toProfile=()=>{
-      this.props.history.push(`/profile`)
+      this.props.history.push(`/profile/${this.props.username}`)
   }
 
   render() {
