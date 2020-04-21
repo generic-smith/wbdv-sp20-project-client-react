@@ -81,6 +81,13 @@ export const updateUser = async (uid, user) => {
     return response.json()
 }
 
+export const removeFromFollowlist = async (uid, username) =>{
+    const response = await fetch(`${url}/users/${uid}/followlist/${username}`,{
+        method: "DELETE"
+    })
+    return response.json()
+}
+
 
 export default {
     createUser,
@@ -92,5 +99,6 @@ export default {
     findAllUsers,
     updateUser,
     deleteUser,
-    findUserByUsername
+    findUserByUsername,
+    removeFromFollowlist
 }

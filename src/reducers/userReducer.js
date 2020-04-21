@@ -4,9 +4,10 @@ import {
     FIND_ALL_USERS,
     FIND_USER_BY_USERNAME,
     LOGIN_USER,
-    LOGOUT,
+    LOGOUT, REMOVE_FROM_FOLLOWLIST,
     UPDATE_USER
 } from "../actions/userActions";
+import {REMOVE_FROM_WATCHLIST} from "../actions/mediaActions";
 
 const initialState = {
     registerSuccess: 3,
@@ -53,6 +54,10 @@ const userReducer = (state = initialState, action) => {
         case FIND_USER_BY_USERNAME:
             return{
                 users: [action.user]
+            }
+        case REMOVE_FROM_FOLLOWLIST:
+            return{
+                user: action.user
             }
 
         default:

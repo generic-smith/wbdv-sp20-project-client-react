@@ -298,3 +298,16 @@
 .match-alert{
   margin-left: 40px;
 }
+.remove-follower{
+  float: right;
+  display: inline-block;
+}
+.remove-follower:hover{
+  background-color: darkred;
+}
+.follower-item:hover{
+  background-color: #ffdb4d;
+}
+.follower-name{
+  display: inline-block;
+}

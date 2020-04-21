@@ -39,3 +39,9 @@ export const findUserByUsername=(user) => ({
     type: FIND_USER_BY_USERNAME,
     user: user
 })
+
+export const REMOVE_FROM_FOLLOWLIST ="REMOVE_FROM_FOLLOWLIST"
+export const removeFromFollowlist = (user) => ({
+    type: REMOVE_FROM_FOLLOWLIST,
+    user: user
+})
