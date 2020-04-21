@@ -9,6 +9,7 @@ class AdvertiserPageComponent extends React.Component {
 
   componentDidMount() {
     this.setState({mediae: getAdvertData()});
+    console.log("Media: " + this.state.mediae)
   }
 
 
@@ -17,13 +18,13 @@ class AdvertiserPageComponent extends React.Component {
     return(
         <div>
           <div>
+            <h1>stuff.</h1>
           <ul>
             {this.state.mediae.length > 0 &&
             this.state.mediae.map((media) =>
-              <li>{media.title} {media.count}</li>
-            )
-
-            }
+              <li>
+                {media.title} {media.count}
+              </li>)}
           </ul>
           </div>
         </div>
