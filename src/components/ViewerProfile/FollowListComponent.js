@@ -27,7 +27,6 @@ class FollowListComponent extends React.Component {
 
     render() {
         let that = this;
-        console.log(this.props.user)
         return (
             <div className="follow-list stretch-down-2">
                 <div className="text-center mt-1"><h5>Your Follow List</h5></div>

@@ -25,7 +25,7 @@ export const deleteUser = async(uid) => {
     return response.json();
 }
 
-export const findUserByUsername  = async (username)=>{
+export const findUserByUsername  = async (username) => {
     return fetch(`${url}/users/${username}`)
         .then(response => response.json())
 }
@@ -70,16 +70,16 @@ export const addUserToFollowList = (uid, user) =>
     })
         .then(response => response.text()).then(text => text.length ? JSON.parse(text) : {});
 
-export const updateUser = async (uid, user) => {
-    const response = await fetch(`${url}/users/${uid}`, {
+export const updateUser = (uid, user) =>
+    fetch(`${url}/users/${uid}`, {
         method: "PUT",
         body: JSON.stringify(user),
         headers: {
             'content-type': 'application/json'
         }
     })
-    return response.json()
-}
+        .then(response => response.text());
+
 
 export const removeFromFollowlist = async (uid, username) =>{
     const response = await fetch(`${url}/users/${uid}/followlist/${username}`,{

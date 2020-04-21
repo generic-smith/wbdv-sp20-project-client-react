@@ -21,8 +21,6 @@ const mediaReducer = (state = initialState, action) => {
             return{
                 media: state.media.filter(m => m.id !== action.mid)
             }
-
-
         default:
             return state
     }

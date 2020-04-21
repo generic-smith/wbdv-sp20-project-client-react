@@ -45,7 +45,7 @@ const userReducer = (state = initialState, action) => {
             }
         case UPDATE_USER:
             return{
-                users: state.users.map(user => user.id === action.newUser.id ? action.newUser : user)
+                user: action.newUser
             }
         case DELETE_USER:
             return{
@@ -53,7 +53,7 @@ const userReducer = (state = initialState, action) => {
             }
         case FIND_USER_BY_USERNAME:
             return{
-                users: [action.user]
+                user: action.user
             }
         case REMOVE_FROM_FOLLOWLIST:
             return{

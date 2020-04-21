@@ -1,19 +1,17 @@
 import React from "react";
 import "../ViewerProfile/Styling.css"
 import {connect} from "react-redux";
-import UserService from "../../services/UserService";
+import userService from "../../services/UserService";
 import {findUserByUsername, updateUser} from "../../actions/userActions";
 
 class ProfileComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.state={
-            user:'',
+        this.state = {
             password:'',
             userType: '',
             confirmed:'',
-            update: false,
-            userId:'',
+            update: false
         }
 
     }
@@ -21,12 +19,11 @@ class ProfileComponent extends React.Component {
 
     componentDidMount() {
         this.props.findUserByUsername(this.props.username);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        nextProps.users.map((user =>
-        this.setState({password: user.password, userType: user.userType, userId: user.id,
-        user: user})));
+        userService.findUserByUsername(this.props.username).then(response => {
+            console.log(response);
+            this.setState({password: response.password, userType: (response.userType !== null) ? response.userType : 'User',
+            confirmed: response.password})
+        })
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -38,6 +35,10 @@ class ProfileComponent extends React.Component {
         }
 
     }
+
+    goBack = () => {
+        this.props.history.push(`/home`);
+    };
 
 
     setUpdate() {
@@ -53,7 +54,10 @@ class ProfileComponent extends React.Component {
     render() {
         return (
             <div className={"container"}>
+
                 <h1><b>Profile</b></h1>
+                <button className="btn btn-danger" onClick={this.goBack}>Back
+                </button>
             <hr/>
                 <div className={"form-group"}>
                     <div className={"profile-username form-inline"}>
@@ -94,13 +98,12 @@ class ProfileComponent extends React.Component {
                     </div>
                     <button type="button" className="btn btn-success btn-lg btn-block profile-update"
                     onClick={() => {
-                        if(this.state.password === this.state.confirmed){
-                            this.state.user.password = this.state.password;
-                            this.state.user.userType = this.state.userType;
-                            this.props.updateUser(this.state.userId, this.state.user);
-                            this.setUpdate();
-                            alert("Successfully updated!")
-                        }
+                        if(this.state.password === this.state.confirmed && this.state.password !== ""){
+                                this.props.updateUser(this.props.user.id, {...this.props.user, password: this.state.password, userType: this.state.userType})
+                                    .then(() => this.setUpdate())
+                                    .then(() => alert("Successfully Updated!"));
+
+                            }
                         else if(this.state.confirmed === ''){
                             alert("Please verify your password")
                         }
@@ -119,22 +122,18 @@ class ProfileComponent extends React.Component {
 }
 const stateToPropertyMapper = (state) => {
     return {
-        users: state.user.users
+        user: state.user.user
     }
 }
-const dispatchToPropertyMapper = (dispatch) => {
-    return {
-        updateUser: (uid, user) => {
-            UserService.updateUser(uid, user)
-                .then(user => dispatch(updateUser(user)))
-        },
-        findUserByUsername:(username) =>{
-            UserService.findUserByUsername(username)
+const dispatchToPropertyMapper = (dispatch) => ({
+        updateUser: (uid, user) =>
+            userService.updateUser(uid, user)
+                .then(user => dispatch(updateUser(user))),
+        findUserByUsername: (username) =>
+            userService.findUserByUsername(username)
                 .then(user => dispatch(findUserByUsername(user)))
-        }
+})
 
-
-
-    }}
-
-export default connect(stateToPropertyMapper, dispatchToPropertyMapper)(ProfileComponent)
+export default connect(stateToPropertyMapper,
+    dispatchToPropertyMapper)
+(ProfileComponent)

@@ -35,7 +35,7 @@ export const deleteUser = (user) =>({
 })
 
 export const FIND_USER_BY_USERNAME="FIND_USER_BY_USERNAME"
-export const findUserByUsername=(user) => ({
+export const findUserByUsername = (user) => ({
     type: FIND_USER_BY_USERNAME,
     user: user
 })
