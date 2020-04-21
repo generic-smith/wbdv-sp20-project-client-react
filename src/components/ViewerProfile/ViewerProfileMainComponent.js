@@ -54,10 +54,11 @@ class ViewerProfileMainComponent extends React.Component {
                       history={this.props.history}/>
                 </div>
               </div>
+                {this.props.user.id !== -1 &&
               <div className="col-3 d-none d-sm-block">
                 <FollowListComponent
                     user={this.props.user}/>
-              </div>
+              </div>}
             </div>
 
           </div>
