@@ -46,7 +46,7 @@ class ViewerProfileMainComponent extends React.Component {
                 userId={this.props.user.id}/>
 
             <div className="row mt-2 ml-1 mr-1 mb-2">
-              <div className="col-9">
+              <div className="col">
                 <div className="m-2">
                   <WatchingGridComponent
                       uid={this.props.uid}
@@ -54,7 +54,7 @@ class ViewerProfileMainComponent extends React.Component {
                       history={this.props.history}/>
                 </div>
               </div>
-              <div className="col-3">
+              <div className="col-3 d-none d-sm-block">
                 <FollowListComponent
                     user={this.props.user}/>
               </div>

@@ -309,5 +309,6 @@
   background-color: #ffdb4d;
 }
 .follower-name{
-  display: inline-block;
+  display: table-cell;
+
 }

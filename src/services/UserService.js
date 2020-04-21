@@ -78,15 +78,15 @@ export const updateUser = (uid, user) =>
             'content-type': 'application/json'
         }
     })
-        .then(response => response.text());
+        .then(response => response.json());
 
 
-export const removeFromFollowlist = async (uid, username) =>{
-    const response = await fetch(`${url}/users/${uid}/followlist/${username}`,{
+export const removeFromFollowlist = (uid, username) =>
+    fetch(`${url}/users/${uid}/followlist/${username}`,{
         method: "DELETE"
     })
-    return response.json()
-}
+        .then(response => response.json());
+
 
 
 export default {

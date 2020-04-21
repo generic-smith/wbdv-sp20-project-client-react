@@ -110,7 +110,7 @@ class SearchBar extends React.Component {
 
 
           {!this.props.viewOnly &&
-          <Dropdown className="long-input ml-auto mr-2 d-none d-sm-block d-md-none dropdown">
+          <Dropdown className="long-input ml-auto mr-2  d-sm-block d-md-none dropdown">
             <input className="long-input form-control" type="text"
                    placeholder={this.getPlaceHolder()} onChange={e => {
               this.setState({searchMediaTitle: e.target.value});

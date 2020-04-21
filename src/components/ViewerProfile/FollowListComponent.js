@@ -21,7 +21,12 @@ class FollowListComponent extends React.Component {
     }
 
     addThisUser = (user) => {
+        this.setState({person: "", users: []});
         this.props.addUser(this.props.user.id, user);
+    }
+
+    deleteThisUser = (username) => {
+        this.props.removeFromFollowlist(this.props.user.id, username);
     }
 
 
@@ -58,7 +63,7 @@ class FollowListComponent extends React.Component {
                             <FollowListItem
                                 username={key}
                                 id={value}
-                                removeFromFollowlist={this.props.removeFromFollowlist}/>
+                                removeFromFollowlist={this.deleteThisUser}/>
                     )
                     }
                 </div>}
@@ -76,7 +81,6 @@ const dispatcherToPropertyMapper = (dispatch) => ({
     addUser: (uid, user) =>
         userService.addUserToFollowList(uid, user)
             .then(response => dispatch(loginUser(response))),
-
     removeFromFollowlist: (uid, username) =>
         userService.removeFromFollowlist(uid, username)
             .then(user => dispatch(removeFromFollowlist(user)))

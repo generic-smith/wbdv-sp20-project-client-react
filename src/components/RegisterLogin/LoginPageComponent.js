@@ -62,6 +62,7 @@ class LoginPageComponent extends React.Component {
 
 
     render() {
+        document.body.style.background="white";
         return (
             <div className="container">
                 {this.state.failedLogin === 1 && <ErrorMessage msg="Login Failed"/> }

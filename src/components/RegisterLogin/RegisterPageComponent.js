@@ -65,7 +65,7 @@ class RegisterPageComponent extends React.Component {
 
 
     render() {
-
+        document.body.style.background="white";
         return (
             <div className="container">
                 {/** we locally realized that the passwords do not match **/}
