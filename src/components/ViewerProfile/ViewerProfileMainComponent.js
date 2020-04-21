@@ -38,7 +38,6 @@ class ViewerProfileMainComponent extends React.Component {
     return (
 
           <div className="body">
-              {console.log(this.props)}
             <LogoBar
                 logout={this.logout}
                 uid={this.props.uid}
