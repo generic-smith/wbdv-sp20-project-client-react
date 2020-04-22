@@ -24,9 +24,8 @@ class LogoBar extends React.Component {
 
 
               {this.props.uid !== 1 && <button className="ml-3 mt-2 mr-2 btn btn-danger" onClick={() => this.props.history.goBack()}>Back
-              </button>
-
-             }
+              </button>}
+            {this.props.user.userType === "Admin" && <button className={"ml-3 ml-2 btn"} onClick={() => this.props.history.push("/admin")}>Admin Page</button> }
 
 
             <h2 className="text-center">

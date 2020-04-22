@@ -22,6 +22,9 @@ class AdminPageComponent extends React.Component {
     }
 
     componentDidMount() {
+        if(this.props.user.userType !== "Admin") {
+            this.props.history.push("/home")
+        }
         this.props.findAllUsers()
     }
 
@@ -177,7 +180,7 @@ class AdminPageComponent extends React.Component {
                                             this.setUserType(user.userType);
                                             this.edit(user)
                                         }}><i className="fa fa-pencil"></i></button>}
-                                {this.state.editingUser !== user.id &&
+                                {this.state.editingUser !== user.id && user.userType !== "Admin" &&
                                 <button type="button" className="btn btn-dark delete-user"
                                         onClick={() => {
                                             this.props.deleteUser(user.id);

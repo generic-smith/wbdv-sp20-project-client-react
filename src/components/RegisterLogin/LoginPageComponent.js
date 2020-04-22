@@ -42,9 +42,6 @@ class LoginPageComponent extends React.Component {
         else if (this.state.username === "") {
             this.setState({failedLogin: 4})
         }
-        else if(this.state.username === "Admin" && this.state.password === "adminpassword"){
-            this.props.history.push("/admin")
-        }
         else {
             this.props.login(this.state).then(this.checkForSame)
         }
