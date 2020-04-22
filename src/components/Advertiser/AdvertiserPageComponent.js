@@ -1,16 +1,16 @@
 import React from 'react';
 import MediaService, {getAdvertData} from "../../services/MediaService";
+
 import LogoBar from "../ViewerProfile/LogoBar";
 import '../ViewerProfile/Styling.css';
+import FollowListItem from "../ViewerProfile/FollowListItem";
 
 class AdvertiserPageComponent extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      mediae:[{title: "Ace Ventura", count: 8},
-        {title: "Ace", count: 5},
-        {title: "Breaking", count: 1}],
+      media: {},
       password:'',
       username:'',
       userType: '',
@@ -20,19 +20,9 @@ class AdvertiserPageComponent extends React.Component {
 
   }
 
-  // componentDidMount() {
-  //   this.setState({mediae: getAdvertData()});
-  //   console.log("Media: " + this.state.mediae)
-  // }
 
   componentDidMount() {
-    this.setState({
-      mediae: getAdvertData(),
-      username: this.props.username
-    });
-
-
-    return;
+    MediaService.getAdvertData().then(results => this.setState({media: results}));
   }
 
 
@@ -43,17 +33,18 @@ class AdvertiserPageComponent extends React.Component {
 
 
   render() {
-    console.log(this.state.mediae)
     return(
         <div>
           <div>
-            <h1>stuff.</h1>
+            <h1>Advertiser View</h1>
           <ul>
-            {this.state.mediae.length > 0 &&
-            this.state.mediae.map((media) =>
-              <li>
-                {media.title} {media.count}
-              </li>)}
+            {this.state.media &&
+            Object.entries(this.state.media).map(
+                  ([key, value]) =>
+                      <li>
+                        Title = {key} Count = {value}
+                      </li>)
+            }
           </ul>
           </div>
         </div>
