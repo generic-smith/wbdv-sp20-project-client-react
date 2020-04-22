@@ -58,7 +58,7 @@ class ViewerProfile extends React.Component {
                                        {...props}
                                        history={props.history}/>}/>
                         <Route path="/" exact={true}>
-                            <Redirect to={"/login"}/>
+                            <Redirect to={"/home"}/>
                         </Route>
                         <Route path="/home/details/:mediaId" exact={true}
                                render={(props) =>

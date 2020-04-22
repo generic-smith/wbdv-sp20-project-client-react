@@ -8,6 +8,10 @@ class LogoBar extends React.Component {
       this.props.history.push(`/profile/${this.props.username}`)
   }
 
+  toLogin = () => {
+      this.props.history.push(`/login`);
+  }
+
   giveMeUsername = () => {
       if (this.props.username === undefined || this.props.username === null) {
           return "Placehold";
@@ -34,6 +38,7 @@ class LogoBar extends React.Component {
                   <h5 className="text-center mr-2 d-none d-sm-block"> Logged in as {this.giveMeUsername().charAt(0).toUpperCase() + this.giveMeUsername().slice(1)} </h5>
                   {/*{this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)} </h5>*/}
 
+                  {this.props.userId === -1 && <button type="button" onClick={() => this.toLogin()} className="btn btn-light profile d-none d-md-block">Log In</button>}
                   <button type="button" onClick={this.props.logout} className="btn btn-light profile d-none d-md-block">Log Out</button>
 
                   {this.props.userId !== -1 &&  <button type="button" onClick={() => this.toProfile()} className="btn btn-light profile d-none d-md-block">Profile</button>}
