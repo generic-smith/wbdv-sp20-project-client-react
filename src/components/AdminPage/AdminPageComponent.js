@@ -74,6 +74,10 @@ class AdminPageComponent extends React.Component {
         }))
     }
 
+    goBack = () => {
+        this.props.history.push(`/home`);
+    };
+
     searchUserbyName(username) {
         const namelist = this.getUsernames();
         if (namelist.includes(username)){
@@ -102,6 +106,7 @@ class AdminPageComponent extends React.Component {
         this.setState({searchUsername: ''})
         this.setState({searchUser:[]})
     }
+
     logOut(){
         this.props.history.push(`/login`)
     }
@@ -109,6 +114,8 @@ class AdminPageComponent extends React.Component {
     render() {
         return (
             <div className="container">
+                <button className="btn btn-danger mb-4 mr-2 back-button-admin" onClick={this.goBack}><i className="fa fa-arrow-left"></i>
+                </button>
                 <h1 className="admin-title"><b>User Admin</b></h1>
                 <button type="button" className="btn btn-dark log-out" onClick={() => {this.logOut()}}>Log Out</button>
                 <hr/>

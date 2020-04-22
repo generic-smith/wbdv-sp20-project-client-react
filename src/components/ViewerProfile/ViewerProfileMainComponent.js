@@ -22,7 +22,10 @@ class ViewerProfileMainComponent extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-     if (prevProps.user.id !== this.props.user.id) {
+      if (prevProps.user === undefined || this.props.user === undefined) {
+          this.props.profileRetrieve();
+      }
+     else if (prevProps.user.id !== this.props.user.id) {
          this.props.profileRetrieve();
      }
 
@@ -33,47 +36,39 @@ class ViewerProfileMainComponent extends React.Component {
       this.props.history.push("/login");
   }
 
-  adminPageBugFix = () => {
-      if (this.props.user === undefined) {
-          window.location.reload();
-      }
-  }
-
 
     render() {
-      this.adminPageBugFix();
     return (
-
-          <div className="body">
-              {console.log(this.props)}
+        <div className="body">
+            {this.props.user &&
             <LogoBar
                 logout={this.logout}
                 uid={this.props.uid}
                 history={this.props.history}
                 username={this.props.user.username}
                 userType={this.props.user.userType}
-                userId={this.props.user.id}/>
+                userId={this.props.user.id}/>}
 
+            {this.props.user &&
             <div className="row mt-2 ml-1 mr-1 mb-2">
-              <div className="col">
-                <div className="m-2">
-                  <WatchingGridComponent
-                      uid={this.props.uid}
-                      user={this.props.user}
-                      history={this.props.history}/>
+                <div className="col">
+                    <div className="m-2">
+                        <WatchingGridComponent
+                            uid={this.props.uid}
+                            user={this.props.user}
+                            history={this.props.history}/>
+                    </div>
                 </div>
-              </div>
                 {this.props.user.id !== -1 &&
-              <div className="col-3 d-none d-sm-block">
-                <FollowListComponent
-                    user={this.props.user}/>
-              </div>}
-            </div>
+                <div className="col-3 d-none d-sm-block">
+                    <FollowListComponent
+                        user={this.props.user}/>
+                </div>}
+            </div>}
 
-          </div>
+        </div>)
+    }
 
-    )
-  }
 }
 
 const stateToPropertyMapper = (state) => ({

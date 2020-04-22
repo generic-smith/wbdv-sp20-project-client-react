@@ -130,6 +130,11 @@ class RegisterPageComponent extends React.Component {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
+                            <Link to="https://docs.google.com/document/d/1nXB0DihpQNEEqejrVCz-cpkydyO_zMVzanne5VZhgIg/edit?usp=sharing">
+                                Privacy Policy
+                            </Link>
+                            <br></br>
+                            <b>By signing up you agree to our privacy policy. Please review it before you register</b>
                             <button type={"button"} className="btn btn-primary btn-block wbdv-login" id="registerBtn"
                                     onClick={this.verifyAndSend}>Register</button>
                         </div>
