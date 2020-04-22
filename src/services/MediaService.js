@@ -36,7 +36,7 @@ export const removeFromWatchList = (uid, mid) =>
     }).then(response => response.json());
 
 export const getAdvertData = () =>
-    fetch(`${url2}/advertiser`)
+    fetch(`${url}/advertiser`)
     .then(response => response.text()).then(
         text => text.length ? JSON.parse(text) : {});
 
