@@ -38,6 +38,7 @@ class ViewerProfileMainComponent extends React.Component {
               uid={this.props.uid}
               history={this.props.history}
               username={this.props.user.username}
+              userType={this.props.user.userType}
               userId={this.props.user.id}/>
           {this.props.user.userType !== "Advertiser" &&
           <div className="row mt-2 ml-1 mr-1 mb-2">
