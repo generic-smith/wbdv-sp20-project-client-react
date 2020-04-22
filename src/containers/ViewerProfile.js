@@ -46,12 +46,16 @@ class ViewerProfile extends React.Component {
                          <ViewerProfileMainComponent
                              {...props}
                              uid={-1}
+                             urlSearchType={""}
+                             urlSearchTitle={""}
                              history={props.history}/>}/>
               <Route path="/user/:id"
                      exact={true}
                      render={(props) =>
                          <ViewerProfileMainComponent
                              {...props}
+                             urlSearchType={""}
+                             urlSearchTitle={""}
                              uid={props.match.params.id}
                              history={props.history}/>}/>
               <Route path="/login"
@@ -122,6 +126,8 @@ class ViewerProfile extends React.Component {
                          <ViewerProfileMainComponent
                              {...props}
                              uid={-1}
+                             urlSearchType={""}
+                             urlSearchTitle={""}
                              history={props.history}/>}/>
               <Route path={"/search/:type/:title"}
                      exact={true}

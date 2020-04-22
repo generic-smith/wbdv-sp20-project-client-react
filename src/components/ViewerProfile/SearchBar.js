@@ -7,28 +7,35 @@ class SearchBar extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      searchType: "search-movies",
-      media: [],
-      searchMediaTitle: ''
-    };
-  }
-
-  componentDidMount() {
-
     if (this.props.searchType === "tvshow") {
-      this.setState({
+      this.state = {
         searchType: "search-tv",
+        media: [],
         searchMediaTitle: this.props.urlSearchTitle
-      })
-    } else if (this.props.searchType === "movie") {
-      this.setState({
+      }
+    }
+    else {
+      this.state = {
         searchType: "search-movies",
+        media: [],
         searchMediaTitle: this.props.urlSearchTitle
-      })
+      };
+    }
+    if (this.props.searchType === "tvshow" && this.state.searchMediaTitle !== "") {
+      this.searchShows(this.state.searchMediaTitle)
+    }
+    else if (this.state.searchMediaTitle !== "") {
+      this.searchMovies(this.state.searchMediaTitle)
     }
 
+  }
+
+
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.urlSearchTitle !== prevProps.urlSearchTitle || prevProps.searchType !== this.props.searchType) {
+
+    }
   }
 
   // so this takes the json which has a lot of stuff and chops it so it only has id and title
