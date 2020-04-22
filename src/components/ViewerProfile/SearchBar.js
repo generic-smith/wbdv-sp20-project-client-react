@@ -4,11 +4,32 @@ import SearchItem from "./SearchItem";
 import './Styling.css';
 
 class SearchBar extends React.Component {
-  state = {
-    searchType: "search-movies",
-    media: [],
-    searchMediaTitle: '',
-  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchType: "search-movies",
+      media: [],
+      searchMediaTitle: ''
+    };
+  }
+
+  componentDidMount() {
+
+    if (this.props.searchType === "tvshow") {
+      this.setState({
+        searchType: "search-tv",
+        searchMediaTitle: this.props.urlSearchTitle
+      })
+    } else if (this.props.searchType === "movie") {
+      this.setState({
+        searchType: "search-movies",
+        searchMediaTitle: this.props.urlSearchTitle
+      })
+    }
+
+  }
 
   // so this takes the json which has a lot of stuff and chops it so it only has id and title
   // the main reason its needed is because tv title is called name so i fixed it here so
@@ -29,10 +50,22 @@ class SearchBar extends React.Component {
   pickForChosen = (json) => {
     let temp;
     if (this.state.searchType === "search-movies") {
-      temp = {type: "MOVIE", mediaId: json.id, description: json.overview, posterPath: json.poster_path, title: json.title};
+      temp = {
+        type: "MOVIE",
+        mediaId: json.id,
+        description: json.overview,
+        posterPath: json.poster_path,
+        title: json.title
+      };
       return temp;
     } else {
-      temp = {type: "TV", mediaId: json.id, description: json.overview, posterPath: json.poster_path, title: json.name};
+      temp = {
+        type: "TV",
+        mediaId: json.id,
+        description: json.overview,
+        posterPath: json.poster_path,
+        title: json.name
+      };
       return temp;
     }
   };
@@ -91,26 +124,26 @@ class SearchBar extends React.Component {
           <h5 className="watchlist-text">Viewing Friend's Watchlist</h5>}
 
 
-
-          {!this.props.viewOnly && <i className="fa fa-2x fa-search d-none ml-auto d-md-block"/> }
-          {!this.props.viewOnly && <select className="d-none d-md-block" id="search-media"
-                      onChange={(e) => {
-                        const newType = e.target.value;
-                        this.setState({
-                          searchType: newType,
-                          media: [],
-                          searchMediaTitle: ''
-                        })
-                      }}
-                      value={this.state.searchType}>
-                <option value={"search-movies"}>Movies</option>
-                <option value={"search-tv"}>TV Shows</option>
-              </select>}
-
+          {!this.props.viewOnly && <i
+              className="fa fa-2x fa-search d-none ml-auto d-md-block"/>}
+          {!this.props.viewOnly && <select className="d-none d-md-block"
+                                           id="search-media"
+                                           onChange={(e) => {
+                                             const newType = e.target.value;
+                                             this.setState({
+                                               searchType: newType,
+                                               media: [],
+                                             })
+                                           }}
+                                           value={this.state.searchType}>
+            <option value={"search-movies"}>Movies</option>
+            <option value={"search-tv"}>TV Shows</option>
+          </select>}
 
 
           {!this.props.viewOnly &&
-          <Dropdown className="long-input ml-auto mr-2  d-sm-block d-md-none dropdown">
+          <Dropdown
+              className="long-input ml-auto mr-2  d-sm-block d-md-none dropdown">
             <input className="long-input form-control" type="text"
                    placeholder={this.getPlaceHolder()} onChange={e => {
               this.setState({searchMediaTitle: e.target.value});
@@ -135,46 +168,41 @@ class SearchBar extends React.Component {
                               searchType={this.state.searchType}
                               addThisId={this.addThisId}/>)}
             </div>}
-          </Dropdown> }
+          </Dropdown>}
 
 
           {!this.props.viewOnly &&
           <Dropdown className="dropdown long-input ml-2 mr-2 d-none d-md-block">
-                <input className="long-input form-control" type="text"
-                       placeholder={this.getPlaceHolder()} onChange={e => {
-                  this.setState({searchMediaTitle: e.target.value});
-                  {
-                    e.target.value.length < 2 && this.setState({media: []})
-                  }
-                  {
-                    e.target.value.length > 1 && this.state.searchType
-                    === "search-movies" && this.searchMovies(e.target.value)
-                  }
-                  {
-                    e.target.value.length > 1 && this.state.searchType
-                    === "search-tv" && this.searchShows(e.target.value)
-                  }
-                }} value={this.state.searchMediaTitle}/>
+            <input className="long-input form-control" type="text"
+                   placeholder={this.getPlaceHolder()} onChange={e => {
+              this.setState({searchMediaTitle: e.target.value});
+              {
+                e.target.value.length < 2 && this.setState({media: []})
+              }
+              {
+                e.target.value.length > 1 && this.state.searchType
+                === "search-movies" && this.searchMovies(e.target.value)
+              }
+              {
+                e.target.value.length > 1 && this.state.searchType
+                === "search-tv" && this.searchShows(e.target.value)
+              }
+            }} value={this.state.searchMediaTitle}/>
 
-                {this.state.media.length > 0 &&
-                <div className={"dropdown-content-2"}>
-                  {this.state.media.map(entry =>
-                      <SearchItem class="search-item"
-                          media={entry}
-                          searchType={this.state.searchType}
-                          addThisId={this.addThisId}/>)}
-                </div>}
-              </Dropdown>}
-
-
-
+            {this.state.media.length > 0 &&
+            <div className={"dropdown-content-2"}>
+              {this.state.media.map(entry =>
+                  <SearchItem class="search-item"
+                              media={entry}
+                              searchType={this.state.searchType}
+                              addThisId={this.addThisId}/>)}
+            </div>}
+          </Dropdown>}
 
 
         </div>
     )
   }
-
-
 
 }
 

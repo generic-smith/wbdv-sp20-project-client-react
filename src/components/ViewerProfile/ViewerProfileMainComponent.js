@@ -50,7 +50,9 @@ class ViewerProfileMainComponent extends React.Component {
                 <WatchingGridComponent
                     uid={this.props.uid}
                     user={this.props.user}
-                    history={this.props.history}/>
+                    history={this.props.history}
+                    urlSearchType={this.props.urlSearchType}
+                    urlSearchTitle={this.props.urlSearchTitle}/>
               </div>
             </div>
             {this.props.user && this.props.user.id !== -1 &&
