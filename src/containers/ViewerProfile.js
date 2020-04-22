@@ -93,6 +93,15 @@ class ViewerProfile extends React.Component {
                                        history={props.history}/>
                                }
                         />
+                        <Route path="/profile"
+                               exact={true}
+                               render={(props) =>
+                                   <ProfileComponent
+                                       {...props}
+                                       history={props.history}
+                                       username={""}/>
+                               }
+                        />
                         <Route path="/profile/:username"
                                exact={true}
                                render={(props) =>

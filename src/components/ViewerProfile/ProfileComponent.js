@@ -11,7 +11,8 @@ class ProfileComponent extends React.Component {
             password:'',
             userType: '',
             confirmed:'',
-            update: false
+            update: false,
+            viewOnly: false
         }
 
     }
@@ -19,11 +20,14 @@ class ProfileComponent extends React.Component {
 
     componentDidMount() {
         userService.profileRetrieve().then(response => {
-            if (Object.keys(response).length === 0) {
+            if (Object.keys(response).length === 0 && this.props.username === "") {
                 this.props.history.push("/home")
             }
-            else if (this.props.username !== response.username) {
-                this.props.history.push("/home")
+            else if (this.props.username !== response.username && this.props.username !== "") {
+                this.setState({viewOnly: true})
+            }
+            else if (this.props.username === "") {
+                this.props.username = response.username;
             }
         });
         this.props.findUserByUsername(this.props.username);
@@ -74,15 +78,15 @@ class ProfileComponent extends React.Component {
                     <input className={"form-control col-5 form-username"} readOnly
                     value={this.props.username}/>
                     </div>
-                    <div className={"profile-password form-inline"}>
+                    {!this.state.viewOnly && <div className={"profile-password form-inline"}>
                         <h5>Password</h5>
                         <input type="password" className={"form-control col-5 form-password"}
                                value={this.state.password}
                         onChange={(e) => {
                             this.setState({password: e.target.value })
                         }}/>
-                    </div>
-                    <div className={"profile-confirmed-password form-inline"}>
+                    </div>}
+                    {!this.state.viewOnly && <div className={"profile-confirmed-password form-inline"}>
                         <h5 >Verify Password</h5>
                         <input type={"password"} className={"form-control col-5 form-confirmed"}
                                value={this.state.confirmed}
@@ -95,7 +99,7 @@ class ProfileComponent extends React.Component {
                         <div className="alert alert-danger match-alert" role="alert">
                             Password does not match
                         </div>}
-                    </div>
+                    </div>}
                     <div className={"profile-type form-inline"}>
                         <h5>User Type</h5>
                         <select className={"form-control form-type col-3"}
