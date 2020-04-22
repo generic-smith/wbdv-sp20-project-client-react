@@ -32,7 +32,6 @@ class ViewerProfile extends React.Component {
             <div>
                 <Provider store={store}>
                     <Router>
-
                         <Route path="/register"
                                exact={true}
                                render={(props) =>

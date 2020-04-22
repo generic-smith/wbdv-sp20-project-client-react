@@ -18,9 +18,16 @@ class ProfileComponent extends React.Component {
 
 
     componentDidMount() {
+        userService.profileRetrieve().then(response => {
+            if (Object.keys(response).length === 0) {
+                this.props.history.push("/home")
+            }
+            else if (this.props.username !== response.username) {
+                this.props.history.push("/home")
+            }
+        });
         this.props.findUserByUsername(this.props.username);
         userService.findUserByUsername(this.props.username).then(response => {
-            console.log(response);
             this.setState({password: response.password, userType: (response.userType !== null) ? response.userType : 'User',
             confirmed: response.password})
         })
@@ -96,6 +103,7 @@ class ProfileComponent extends React.Component {
                         onChange={(e) => this.setState({userType: e.target.value})}>
                             <option value={"User"}>User</option>
                             <option value={"Advertiser"}>Advertiser</option>
+                            <option value={"Admin"} hidden={true}>Admin</option>
                         </select>
                     </div>
                     <button type="button" className="btn btn-success btn-lg btn-block profile-update"

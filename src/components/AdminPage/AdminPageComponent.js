@@ -1,6 +1,6 @@
 import React from "react";
 import UserService from "../../services/UserService";
-import {deleteUser, findAllUsers, findUserByUsername, updateUser} from "../../actions/userActions";
+import {deleteUser, findAllUsers, findUserByUsername, loginUser, updateUser} from "../../actions/userActions";
 import {connect} from "react-redux";
 import "../ViewerProfile/Styling.css";
 import "../../../node_modules/font-awesome/css/font-awesome.css"
@@ -22,11 +22,23 @@ class AdminPageComponent extends React.Component {
     }
 
     componentDidMount() {
-        this.props.findAllUsers()
+        this.props.profileRetrieve();
+        this.doCheck();
+    }
+
+    doCheck() {
+        if (this.props.user.userType !== "Admin") {
+            this.props.history.push("/home");
+        }
+        else {
+            this.props.findAllUsers()
+        }
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.update) {
+            this.props.profileRetrieve();
             this.props.findAllUsers();
             this.setState({update: false})
         }
@@ -62,6 +74,10 @@ class AdminPageComponent extends React.Component {
         }))
     }
 
+    goBack = () => {
+        this.props.history.push(`/home`);
+    };
+
     searchUserbyName(username) {
         const namelist = this.getUsernames();
         if (namelist.includes(username)){
@@ -90,6 +106,7 @@ class AdminPageComponent extends React.Component {
         this.setState({searchUsername: ''})
         this.setState({searchUser:[]})
     }
+
     logOut(){
         this.props.history.push(`/login`)
     }
@@ -97,6 +114,8 @@ class AdminPageComponent extends React.Component {
     render() {
         return (
             <div className="container">
+                <button className="btn btn-danger mb-4 mr-2 back-button-admin" onClick={this.goBack}><i className="fa fa-arrow-left"></i>
+                </button>
                 <h1 className="admin-title"><b>User Admin</b></h1>
                 <button type="button" className="btn btn-dark log-out" onClick={() => {this.logOut()}}>Log Out</button>
                 <hr/>
@@ -177,7 +196,7 @@ class AdminPageComponent extends React.Component {
                                             this.setUserType(user.userType);
                                             this.edit(user)
                                         }}><i className="fa fa-pencil"></i></button>}
-                                {this.state.editingUser !== user.id &&
+                                {this.state.editingUser !== user.id && user.userType !== "Admin" &&
                                 <button type="button" className="btn btn-dark delete-user"
                                         onClick={() => {
                                             this.props.deleteUser(user.id);
@@ -266,7 +285,8 @@ class AdminPageComponent extends React.Component {
 
 const stateToPropertyMapper = (state) => {
     return {
-        users: state.user.users
+        users: state.user.users,
+        user: state.user.user
     }
 }
 
@@ -276,7 +296,10 @@ const dispatchToPropertyMapper = (dispatch) => {
             UserService.findAllUsers()
                 .then(allUsers => dispatch(findAllUsers(allUsers)))
         },
-
+        profileRetrieve: () => {
+            UserService.profileRetrieve()
+                .then(user => dispatch(loginUser(user)))
+        },
         updateUser: (uid, user) => {
             UserService.updateUser(uid, user)
                 .then(user => dispatch(updateUser(user)))
