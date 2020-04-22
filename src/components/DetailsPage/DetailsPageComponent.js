@@ -76,6 +76,7 @@ class DetailsPageComponent extends React.Component {
           </div>
 
             <div className="col-10 details-page-details mt-2 mb-2">
+              <div>
               <div className="details-page-title"><h2>{this.state.movie.title}</h2>
                 <img className={"card-image-top"}
                      src={`https://image.tmdb.org/t/p/w200${this.state.movie.posterPath}`} alt="Poster" width={187} height={300}/>
@@ -93,6 +94,7 @@ class DetailsPageComponent extends React.Component {
 
                   </div>
                 </div>
+              </div>
                 {this.state.movie.type === "MOVIE" &&
                 <div className="row details-page-option">
                   <div className="col-md-4">

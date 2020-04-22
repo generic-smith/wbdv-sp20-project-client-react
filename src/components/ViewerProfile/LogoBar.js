@@ -1,6 +1,5 @@
 import React from "react";
 import "./Styling.css";
-import Logo from "../../logo.png"
 import {Link} from "react-router-dom";
 
 class LogoBar extends React.Component {

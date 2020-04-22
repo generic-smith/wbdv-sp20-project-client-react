@@ -1,15 +1,44 @@
 import React from 'react';
 import MediaService, {getAdvertData} from "../../services/MediaService";
+import LogoBar from "../ViewerProfile/LogoBar";
+import '../ViewerProfile/Styling.css';
 
 class AdvertiserPageComponent extends React.Component {
 
-  state = {
-    mediae:[]
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      mediae:[{title: "Ace Ventura", count: 8},
+        {title: "Ace", count: 5},
+        {title: "Breaking", count: 1}],
+      password:'',
+      username:'',
+      userType: '',
+      confirmed:'',
+      update: false
+    }
+
+  }
+
+  // componentDidMount() {
+  //   this.setState({mediae: getAdvertData()});
+  //   console.log("Media: " + this.state.mediae)
+  // }
 
   componentDidMount() {
-    this.setState({mediae: getAdvertData()});
-    console.log("Media: " + this.state.mediae)
+    this.setState({
+      mediae: getAdvertData(),
+      username: this.props.username
+    });
+
+
+    return;
+  }
+
+
+  logout = () => {
+    this.props.logout();
+    this.props.history.push("/login");
   }
 
 
