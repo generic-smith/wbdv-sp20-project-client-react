@@ -19,7 +19,10 @@ class ViewerProfileMainComponent extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.user.id !== this.props.user.id) {
+    if (this.props.user === undefined || prevProps.user === undefined) {
+      window.location.reload();
+    }
+    else if (prevProps.user.id !== this.props.user.id) {
       this.props.profileRetrieve();
     }
   }
@@ -31,16 +34,16 @@ class ViewerProfileMainComponent extends React.Component {
 
   render() {
     return (
-
         <div className="body">
+          {this.props.user &&
           <LogoBar
               logout={this.logout}
               uid={this.props.uid}
               history={this.props.history}
               username={this.props.user.username}
               userType={this.props.user.userType}
-              userId={this.props.user.id}/>
-          {this.props.user.userType !== "Advertiser" &&
+              userId={this.props.user.id}/>}
+          {this.props.user.userType !== "Advertiser" && this.props.user &&
           <div className="row mt-2 ml-1 mr-1 mb-2">
             <div className="col">
               <div className="m-2">
@@ -50,7 +53,7 @@ class ViewerProfileMainComponent extends React.Component {
                     history={this.props.history}/>
               </div>
             </div>
-            {this.props.user.id !== -1 &&
+            {this.props.user.id !== -1 && this.props.user &&
             <div className="col-3 d-none d-sm-block">
               <FollowListComponent
                   user={this.props.user}/>
@@ -59,7 +62,7 @@ class ViewerProfileMainComponent extends React.Component {
           </div>
           }
 
-          {this.props.user.userType === "Advertiser" &&
+          {this.props.user.userType === "Advertiser" && this.props.user &&
             <AdvertiserPageComponent
               uid={this.props.uid}
               user={this.props.user}
