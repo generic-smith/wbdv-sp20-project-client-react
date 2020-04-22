@@ -19,13 +19,13 @@ class ViewerProfileMainComponent extends React.Component {
 
   componentDidMount() {
       this.props.profileRetrieve();
-      return;
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
      if (prevProps.user.id !== this.props.user.id) {
          this.props.profileRetrieve();
      }
+
   }
 
     logout = () => {
@@ -33,11 +33,19 @@ class ViewerProfileMainComponent extends React.Component {
       this.props.history.push("/login");
   }
 
+  adminPageBugFix = () => {
+      if (this.props.user === undefined) {
+          window.location.reload();
+      }
+  }
+
 
     render() {
+      this.adminPageBugFix();
     return (
 
           <div className="body">
+              {console.log(this.props)}
             <LogoBar
                 logout={this.logout}
                 uid={this.props.uid}

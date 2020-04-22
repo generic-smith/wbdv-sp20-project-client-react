@@ -21,9 +21,9 @@ class LogoBar extends React.Component {
   render() {
     return (
         <div className="d-flex">
-            
+
               <button className="ml-3 mt-2 mr-2 btn btn-danger" onClick={() => this.props.history.goBack()}>Back</button>
-            {this.props.userType === "Admin" && <button className={"ml-3 ml-2 btn"} onClick={() => this.props.history.push("/admin")}>Admin Page</button> }
+            {this.props.userType === "Admin" && <button className={"ml-3 ml-2 mt-2 btn btn-light"} onClick={() => this.props.history.push("/admin")}>Admin Page</button> }
 
 
             <h2 className="text-center">

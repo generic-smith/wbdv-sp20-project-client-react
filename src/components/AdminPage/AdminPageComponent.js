@@ -1,6 +1,6 @@
 import React from "react";
 import UserService from "../../services/UserService";
-import {deleteUser, findAllUsers, findUserByUsername, updateUser} from "../../actions/userActions";
+import {deleteUser, findAllUsers, findUserByUsername, loginUser, updateUser} from "../../actions/userActions";
 import {connect} from "react-redux";
 import "../ViewerProfile/Styling.css";
 import "../../../node_modules/font-awesome/css/font-awesome.css"
@@ -22,14 +22,23 @@ class AdminPageComponent extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.user.userType !== "Admin") {
-            this.props.history.push("/home")
+        this.props.profileRetrieve();
+        this.doCheck();
+    }
+
+    doCheck() {
+        if (this.props.user.userType !== "Admin") {
+            this.props.history.push("/home");
         }
-        this.props.findAllUsers()
+        else {
+            this.props.findAllUsers()
+        }
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.update) {
+            this.props.profileRetrieve();
             this.props.findAllUsers();
             this.setState({update: false})
         }
@@ -269,7 +278,8 @@ class AdminPageComponent extends React.Component {
 
 const stateToPropertyMapper = (state) => {
     return {
-        users: state.user.users
+        users: state.user.users,
+        user: state.user.user
     }
 }
 
@@ -279,7 +289,10 @@ const dispatchToPropertyMapper = (dispatch) => {
             UserService.findAllUsers()
                 .then(allUsers => dispatch(findAllUsers(allUsers)))
         },
-
+        profileRetrieve: () => {
+            UserService.profileRetrieve()
+                .then(user => dispatch(loginUser(user)))
+        },
         updateUser: (uid, user) => {
             UserService.updateUser(uid, user)
                 .then(user => dispatch(updateUser(user)))
