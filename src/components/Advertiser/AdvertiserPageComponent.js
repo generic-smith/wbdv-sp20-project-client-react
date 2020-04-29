@@ -1,6 +1,6 @@
 import React from 'react';
 import MediaService, {getAdvertData} from "../../services/MediaService";
-
+import Chart from 'chart.js'
 import LogoBar from "../ViewerProfile/LogoBar";
 import '../ViewerProfile/Styling.css';
 import FollowListItem from "../ViewerProfile/FollowListItem";
@@ -24,6 +24,15 @@ class AdvertiserPageComponent extends React.Component {
   componentDidMount() {
     MediaService.getAdvertData().then(results => this.setState({media: results}));
   }
+
+  // const adCensusChart = new Chart(adCensus, {
+  //   type: 'bar',
+  //   data: {
+  //     labels: this.state.media.title,
+  //     dataset
+  //         },
+  //
+  // })
 
 
   logout = () => {

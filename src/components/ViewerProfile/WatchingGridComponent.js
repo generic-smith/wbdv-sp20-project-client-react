@@ -20,6 +20,8 @@ class WatchingGridComponent extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.searchType + " and " + this.props.searchMediaTitle)
+
     if (this.props.uid !== -1) {
       this.setState({viewOnly: true},
           () => this.props.findWatchlist(this.props.uid));

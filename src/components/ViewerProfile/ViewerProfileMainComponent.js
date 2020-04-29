@@ -14,6 +14,7 @@ class ViewerProfileMainComponent extends React.Component {
   state = {};
 
   componentDidMount() {
+    console.log(this.props.searchType + " and " + this.props.searchMediaTitle)
     this.props.profileRetrieve();
     return;
   }
